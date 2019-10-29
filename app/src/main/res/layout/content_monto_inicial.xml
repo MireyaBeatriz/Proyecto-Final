@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MontoInicial"
+    android:orientation="vertical"
+    android:background="#95A2EB"
+    tools:showIn="@layout/activity_monto_inicial">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detalle de presupuesto ingresado"
+        android:textColor="#000"
+        android:layout_marginTop="15dp"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:fontFamily="cursive"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="5dp"
+        android:background="#000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="57dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="cursive"
+        android:text="Fecha de realización: "
+        android:textColor="#000"
+        android:textSize="30dp"
+        android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:id="@+id/edtFecha"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="#917979"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:inputType="date"
+                android:textColor="#000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="cursive"
+                android:text="Cantidad Ingresada: "
+                android:textColor="#000"
+                android:textSize="30dp"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:id="@+id/edtIngreso"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="#917979"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:inputType="date"
+                android:textColor="#000"/>
+
+            <Button
+                android:layout_width="133dp"
+                android:layout_height="76dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="20dp"
+                android:text="Guardar" />
+
+        </LinearLayout>
+</ScrollView>
+
+</LinearLayout>

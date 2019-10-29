@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Login"
     tools:showIn="@layout/activity_login"
-    android:background="#9DC9F0"
+    android:background="#E08BEE"
     android:orientation="vertical">
 
     <ProgressBar
@@ -18,84 +16,65 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/image_logo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:padding="16dp"
-        app:srcCompat="@drawable/login" />
-
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/nit"
+
+            <ImageView
+                android:id="@+id/image_logo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@color/colorAccent">
-
-                <EditText
-                    android:id="@+id/usuario_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_user_id"
-                    android:maxLength="10"
-                    android:maxLines="1"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/contraseña"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@color/colorAccent"
-                app:passwordToggleEnabled="true">
-
-                <EditText
-                    android:id="@+id/login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/login"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:maxLines="1"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
-                    tools:ignore="InvalidImeActionId" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/mensaje"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                app:backgroundTint="@android:color/white"
-                app:srcCompat="@drawable/rubi"/>
+                android:layout_height="316dp"
+                android:layout_marginTop="50dp"
+                app:srcCompat="@drawable/login" />
 
         </LinearLayout>
     </ScrollView>
+
+    <EditText
+        android:id="@+id/usuario"
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:text="Usuario"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black" />
+
+    <EditText
+        android:id="@+id/contraseña"
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:text="Contraseña"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textColorHint="@android:color/black" />
+
+    <Button
+        android:id="@+id/mensaje"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="15dp"
+        android:textSize="20dp"
+        android:text="@string/action_sign_in"
+        android:textStyle="bold"
+        android:background="@drawable/rubi" />
+
 </LinearLayout>
 

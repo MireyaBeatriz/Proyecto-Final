@@ -10,8 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+<<<<<<< HEAD
             android:name=".Login"
             android:label="@string/title_activity_login"
+=======
+            android:name=".gastos"
+>>>>>>> d0598cf16ee372e16e6c200f50a5945a614055eb
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"

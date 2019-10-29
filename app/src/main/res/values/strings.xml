@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ProyectoFinal</string>
     <string name="action_settings">Settings</string>
+<<<<<<< HEAD
     <string name="title_activity_login">Login</string>
 
     <string name="prompt_user_id">Número de identificación</string>
@@ -14,4 +15,7 @@
     <string name="error_incorrect_user_id">Número de identificación no registrado</string>
     <string name="error_network">Conexión de red no disponible</string>
     <string name="error_invalid_password">Contraseña inválida</string>
+=======
+    <string name="title_activity_gastos">gastos</string>
+>>>>>>> d0598cf16ee372e16e6c200f50a5945a614055eb
 </resources>
