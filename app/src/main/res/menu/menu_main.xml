@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.proyectofinal.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/Monto"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/Gastos"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
