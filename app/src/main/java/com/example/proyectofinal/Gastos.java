@@ -10,7 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 
-public class gastos extends AppCompatActivity {
+public class Gastos extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

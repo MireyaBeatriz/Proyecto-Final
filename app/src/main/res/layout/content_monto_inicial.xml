@@ -48,7 +48,9 @@
                 android:layout_marginRight="10dp"
                 android:hint="Ingrese fecha de ingreso"
                 android:paddingLeft="15dp"
+                android:fontFamily="cursive"
                 android:inputType="date"
+                android:textSize="25dp"
                 android:textColorHint="#000"
                 android:textColor="#000"/>
 
@@ -63,18 +65,38 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textColorHint="#000"
+                android:fontFamily="cursive"
                 android:inputType="date"
+                android:textSize="25dp"
                 android:paddingLeft="15dp"
                 android:textColor="#000"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <Button
                 android:layout_width="133dp"
                 android:layout_height="76dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
+                android:background="#2341EC"
+                android:textColor="#ffff"
                 android:layout_marginRight="80dp"
                 android:text="Guardar" />
 
+                <Button
+                    android:layout_width="133dp"
+                    android:layout_height="76dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#2341EC"
+                    android:textColor="#ffff"
+                    android:layout_marginRight="80dp"
+                    android:text="Nuevo"
+                    android:onClick="Nuevo"/>
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

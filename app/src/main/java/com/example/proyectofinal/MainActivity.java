@@ -1,5 +1,6 @@
 package com.example.proyectofinal;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -46,7 +47,16 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_monto) {
+            Intent i = new Intent(MainActivity.this, MontoInicial.class);
+            return true;
+        }
+        if (id == R.id.action_gastos) {
+            Intent i = new Intent(MainActivity.this, Gastos.class);
+            return true;
+        }
+        if (id == R.id.action_gastos) {
+            Intent i = new Intent(MainActivity.this, prueba.class);
             return true;
         }
 

@@ -2,15 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.proyectofinal.MainActivity">
-    <item
-        android:id="@+id/Monto"
-        android:orderInCategory="100"
-        android:title="Monto"
-        app:showAsAction="never" />
 
     <item
-        android:id="@+id/Gastos"
-        android:orderInCategory="100"
-        android:title="Gastos"
-        app:showAsAction="never" />
+        android:id="@+id/action_monto"
+        android:orderInCategory="1"
+        android:title="Monto"/>
+
+    <item
+        android:id="@+id/action_gastos"
+        android:orderInCategory="2"
+        android:title="Gastos" />
+    <item
+        android:id="@+id/action_prueba"
+        android:orderInCategory="3"
+        android:title="Prueba" />
 </menu>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ProyectoFinal</string>
-    <string name="title_activity_monto_inicial">Monto</string>
-    <string name="title_activity_login">Login</string>
-    <string name="title_activity_gastos">gastos</string>
+    <string name="actiom_monto">Monto</string>
+    <string name="action_gastos">gastos</string>
+    <string name="action_prueba">prueba</string>
 
 </resources>
