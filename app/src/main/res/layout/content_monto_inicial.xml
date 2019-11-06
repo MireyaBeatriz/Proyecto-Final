@@ -36,15 +36,7 @@
         android:layout_marginTop="5dp"
         android:background="#000" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="57dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="cursive"
-        android:text="Fecha de realización: "
-        android:textColor="#000"
-        android:textSize="30dp"
-        android:layout_marginLeft="10dp"/>
+
 
             <EditText
                 android:id="@+id/edtFecha"
@@ -54,18 +46,12 @@
                 android:background="#917979"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:hint="Ingrese fecha de ingreso"
+                android:paddingLeft="15dp"
                 android:inputType="date"
+                android:textColorHint="#000"
                 android:textColor="#000"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="57dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="cursive"
-                android:text="Cantidad Ingresada: "
-                android:textColor="#000"
-                android:textSize="30dp"
-                android:layout_marginLeft="10dp"/>
 
             <EditText
                 android:id="@+id/edtIngreso"
@@ -73,9 +59,12 @@
                 android:layout_height="57dp"
                 android:layout_marginTop="15dp"
                 android:background="#917979"
+                android:hint="Cantidad de Monto inicial"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:textColorHint="#000"
                 android:inputType="date"
+                android:paddingLeft="15dp"
                 android:textColor="#000"/>
 
             <Button
@@ -83,8 +72,18 @@
                 android:layout_height="76dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="80dp"
                 android:text="Guardar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="89dp"
+                android:orientation="vertical">
+
+                <include layout="@layout/footer" />
+                />
+            </LinearLayout>
 
         </LinearLayout>
 </ScrollView>
