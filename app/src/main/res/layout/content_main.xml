@@ -4,52 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B9BDBE"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:background="#B2BFC9"
     tools:showIn="@layout/activity_main">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Control de presupuesto"
-        android:textColor="#000"
-        android:textSize="35dp"
-        android:fontFamily="cursive"
+        android:layout_marginTop="5dp"
+        android:text="CONTROL DE PRESUPUESTO"
         android:textAlignment="center"
-
-       />
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="203dp"
-        android:src="@drawable/presupuesto"
-        android:layout_marginTop="50dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SISTEMAS 21 B"
+        android:textColor="#0D0D0E"
+        android:textSize="20dp"
+        android:textStyle="bold"
         android:fontFamily="cursive"
-        android:textColor="#000"
-        android:textSize="25dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="40dp"
-        android:textAlignment="center"/>
+        />
 
-    </LinearLayout>
-</ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <include layout="@layout/footer" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/presupuesto" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="SISTEMAS21B"
+                android:fontFamily="cursive"
+                android:textColor="#000"
+                android:layout_marginTop="35dp"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                />
+
+
+            <include layout="@layout/footer" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
+
