@@ -48,15 +48,18 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_monto) {
-            Intent i = new Intent(MainActivity.this, MontoInicial.class);
+            Intent i = new Intent(MainActivity.this,MontoInicial.class);
+            startActivity(i);
             return true;
         }
         if (id == R.id.action_gastos) {
-            Intent i = new Intent(MainActivity.this, Gastos.class);
+            Intent i = new Intent(MainActivity.this,Gastos.class);
+            startActivity(i);
             return true;
         }
-        if (id == R.id.action_gastos) {
-            Intent i = new Intent(MainActivity.this, prueba.class);
+        if (id == R.id.action_prueba) {
+            Intent i = new Intent(MainActivity.this,prueba.class);
+            startActivity(i);
             return true;
         }
 

@@ -49,6 +49,7 @@
 
     </LinearLayout>
 </ScrollView>
+
     <include layout="@layout/footer" />
 
 </LinearLayout>
