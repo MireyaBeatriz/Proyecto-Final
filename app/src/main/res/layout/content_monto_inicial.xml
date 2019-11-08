@@ -49,7 +49,7 @@
                 android:hint="Ingrese fecha de ingreso"
                 android:paddingLeft="15dp"
                 android:fontFamily="cursive"
-                android:inputType="date"
+                android:inputType="datetime"
                 android:textSize="25dp"
                 android:textColorHint="#000"
                 android:textColor="#000"/>
@@ -83,7 +83,8 @@
                 android:background="#2341EC"
                 android:textColor="#ffff"
                 android:layout_marginRight="80dp"
-                android:text="Guardar" />
+                android:text="Guardar"
+                android:onClick="Guardar"/>
 
                 <Button
                     android:layout_width="133dp"

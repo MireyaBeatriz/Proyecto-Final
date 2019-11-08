@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +16,11 @@ import com.google.android.material.snackbar.Snackbar;
 public class MontoInicial extends AppCompatActivity {
 
     private EditText edtFecha, edtIngreso;
+    boolean estadoFecha = false;
+    boolean estadoIngreso = false;
 
-    AdminSQLiteOpenHelper admin;
+    Conexion conexion = new Conexion(this);
+    MontoDto datos = new MontoDto();
 
     public MontoInicial() {
         // Required empty public constructor
@@ -55,33 +57,38 @@ public class MontoInicial extends AppCompatActivity {
     }
 
     public void Guardar(View view) {
-        if (edtFecha.equals("") || edtIngreso.equals("")) {
-
-            Toast.makeText(this, "Fecha y Monto de ingreso \n ES OBLIGATORIO", Toast.LENGTH_SHORT).show();
-            // Toast.makeText(getContext(), "Nombre, salario y seleccionar un tipo de empleado.\n ES OBLIGATORIO", Toast.LENGTH_LONG).show();
-
+        if (edtFecha.getText().toString().length() == 0) {
+            estadoFecha = false;
+            edtFecha.setError("Campo obligatorio");
         } else {
-            SQLiteDatabase bd = admin.getWritableDatabase();
-            String idmonto = null;
-            String fecha = edtFecha.getText().toString();
-            String ingreso = edtIngreso.getText().toString();
-
-
-            ContentValues registro = new ContentValues();
-            registro.put("idmonto", idmonto);
-            registro.put("fecha", fecha);
-            registro.put("ingreso", ingreso);
-
-
-            bd.insert("monto", null, registro);
-            bd.close();
-
-            edtFecha.setText("");
-            edtIngreso.setText("");
-            edtFecha.requestFocus();
-            Toast.makeText(this, "Monto guardado correctamente", Toast.LENGTH_SHORT).show();
-            //Toast.makeText(getContext(), "Empleado guardado de tipo: " + idtipo, Toast.LENGTH_SHORT).show();
+            estadoFecha = true;
         }
+
+        if (edtIngreso.getText().toString().length() == 0) {
+            estadoIngreso = false;
+            edtIngreso.setError("Campo obligatorio");
+        } else {
+            estadoIngreso = true;
+        }
+
+        if (estadoFecha && estadoIngreso) {
+            try {
+                // datos.setIdmonto(Integer.parseInt(edtFecha.Null);
+                datos.setFecha(edtFecha.getText().toString());
+                datos.setIngreso(Double.parseDouble(edtIngreso.getText().toString()));
+                //if(conexion.insertardatos(datos)){ //if(conexion.InsertRegister(datos)){
+                if (conexion.InsertMonto(datos)) {
+                    Toast.makeText(this, "Registro agregado satisfactoriamente!", Toast.LENGTH_SHORT).show();
+                    Nuevo(view);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error. Ya existe un registro\n" + " Fecha: " + edtFecha.getText().toString(), Toast.LENGTH_LONG).show();
+                    Nuevo(view);
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, "ERROR. Ya existe.", Toast.LENGTH_SHORT).show();
+            }
+        }
+
 
     }
 }
