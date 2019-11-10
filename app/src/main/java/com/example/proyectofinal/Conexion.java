@@ -19,6 +19,8 @@ public class Conexion extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table monto(idmonto  INTEGER PRIMARY KEY AUTOINCREMENT, cantidad real, fecha date)");
         sqLiteDatabase.execSQL("create table gasto(idgasto  INTEGER PRIMARY KEY AUTOINCREMENT, descripcion text, cantidad real, fecha date )");
        // sqLiteDatabase.execSQL("create table totalmonto(idtotalmonto  INTEGER PRIMARY KEY AUTOINCREMENT, detalle text,  idgasto, idmonto INTEGER, constraint ((fk_gasto)(fk_monto)) foreign key(idgasto) references gasto(idgasto), idmonto INTEGER, constraint fk_monto foreign key(idmonto) references monto(idmonto))");
+        sqLiteDatabase.execSQL("create table totalmonto(id_totalmonto  INTEGER PRIMARY KEY AUTOINCREMENT, detalle text, idmonto INTEGER, idgasto INTEGER, constraint fk_monto foreign key(idmonto) references monto(idmonto), constraint fk_gasto foreign key(idgasto) references gasto(idgasto))");
+
 
     }
 
@@ -47,6 +49,33 @@ public class Conexion extends SQLiteOpenHelper {
                         "(idmonto, fecha, cantidad)\n" +
                         "VALUES \n" +
                         "('" + String.valueOf(idmonto) + "', '" + fecha + "', '" + String.valueOf(cantidad) + "');";
+                bd().execSQL(SQL);
+                bd().close();
+                estado = true;
+            }
+        } catch (Exception e) {
+            estado = true;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+
+    }
+
+    public boolean InsertDetalle(DetalleDto datos) {
+        boolean estado = true;
+        try {
+            int id_totalmonto = datos.getId_totalmonto();
+            String detalle = datos.getDetalle();
+
+
+            Cursor fila = bd().rawQuery("select id_totalmonto from totalmonto where id_totalmonto='" + id_totalmonto + "'", null);
+            if (fila.moveToFirst() == true) {
+                estado = false;
+            } else {
+                String SQL = "INSERT INTO totalmonto \n" +
+                        "(id_totalmonto, detalle)\n" +
+                        "VALUES \n" +
+                        "('" + String.valueOf(id_totalmonto) + "', '" + detalle +  "');";
                 bd().execSQL(SQL);
                 bd().close();
                 estado = true;

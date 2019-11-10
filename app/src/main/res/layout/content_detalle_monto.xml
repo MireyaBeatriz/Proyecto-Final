@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".DetalleMonto"
+    android:orientation="vertical"
+    android:background="#EED0D0"
+    tools:showIn="@layout/activity_detalle_monto">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detalle de Monto ingresado"
+        android:textColor="#000"
+        android:layout_marginTop="15dp"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:fontFamily="cursive"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="5dp"
+                android:background="#000" />
+
+
+
+            <EditText
+                android:id="@+id/edtdetalle"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="#E0A8A8"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="Ingrese Detalle monto"
+                android:paddingLeft="15dp"
+                android:fontFamily="cursive"
+                android:inputType="text"
+                android:textSize="25dp"
+                android:textColorHint="#000"
+                android:textColor="#000"/>
+
+            <Spinner
+                android:id="@+id/spnGasto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog">
+
+            </Spinner>
+
+            <Spinner
+                android:id="@+id/spnMonto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog">
+
+            </Spinner>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="133dp"
+                    android:layout_height="76dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#454649"
+                    android:textColor="#ffff"
+                    android:layout_marginRight="80dp"
+                    android:text="Guardar"
+                    android:onClick="Guardar"/>
+
+                <Button
+                    android:layout_width="133dp"
+                    android:layout_height="76dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#474749"
+                    android:textColor="#ffff"
+                    android:layout_marginRight="80dp"
+                    android:text="Nuevo"
+                    android:onClick="Nuevo"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                android:orientation="vertical">
+
+                <include layout="@layout/footer" />
+                />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

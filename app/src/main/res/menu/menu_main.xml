@@ -16,4 +16,9 @@
         android:id="@+id/action_prueba"
         android:orderInCategory="3"
         android:title="Prueba" />
+
+    <item
+        android:id="@+id/action_detalle"
+        android:orderInCategory="3"
+        android:title="Detalle" />
 </menu>

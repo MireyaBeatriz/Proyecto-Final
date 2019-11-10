@@ -9,12 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".prueba"></activity>
+        <activity
+            android:name=".DetalleMonto"
+
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".prueba" />
         <activity android:name=".Login" />
-        <activity android:name=".Gastos"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".MontoInicial"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Gastos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MontoInicial"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
