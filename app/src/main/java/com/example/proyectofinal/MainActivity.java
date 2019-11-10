@@ -63,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_detalle) {
+        Intent i = new Intent(MainActivity.this,DetalleMonto.class);
+        startActivity(i);
+        return true;
+    }
+
         return super.onOptionsItemSelected(item);
     }
 }

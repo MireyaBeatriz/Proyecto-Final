@@ -47,7 +47,7 @@
                 android:background="#E0A8A8"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:hint="Ingrese Detalle monto"
+                android:hint="Ingrese Detalle Monto:"
                 android:paddingLeft="15dp"
                 android:fontFamily="cursive"
                 android:inputType="text"
@@ -102,7 +102,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="115dp"
                 android:orientation="vertical">
 
                 <include layout="@layout/footer" />
