@@ -47,7 +47,7 @@ public class MontoInicial extends AppCompatActivity {
         });
     }
 
-    public void Nuevo(View view) {
+    public void Nuevo() {
         edtFecha.setText("");
         edtIngreso.setText("");
         edtFecha.requestFocus();
@@ -79,16 +79,67 @@ public class MontoInicial extends AppCompatActivity {
                 //if(conexion.insertardatos(datos)){ //if(conexion.InsertRegister(datos)){
                 if (conexion.InsertMonto(datos)) {
                     Toast.makeText(this, "Registro agregado satisfactoriamente!", Toast.LENGTH_SHORT).show();
-                    Nuevo(view);
+                    Nuevo();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error. Ya existe un registro\n" + " Fecha: " + edtFecha.getText().toString(), Toast.LENGTH_LONG).show();
-                    Nuevo(view);
+                    Nuevo();
                 }
             } catch (Exception e) {
                 Toast.makeText(this, "ERROR. Ya existe.", Toast.LENGTH_SHORT).show();
             }
         }
-
-
     }
+
+    public void ConsultarFecha(View v) {
+
+        if (edtFecha.getText().toString().length() == 0) {
+            edtFecha.setError("Campo obligatorio");
+            estadoFecha = false;
+        } else {
+            estadoFecha = true;
+        }
+        if (estadoFecha) {
+            String fecha = edtFecha.getText().toString();
+            double ingreso = Double.parseDouble(edtIngreso.getText().toString());
+            datos.setFecha(fecha);
+            datos.setIngreso(ingreso);
+
+            if (conexion.consultaFecha1(datos)) {
+                edtFecha.setText("" + datos.getFecha());
+                edtIngreso.setText("" + datos.getIngreso());
+            } else {
+                Toast.makeText(this, "No existe registro con dicha fecha", Toast.LENGTH_SHORT).show();
+                Nuevo();
+            }
+        } else {
+            Toast.makeText(this, "Ingrese fecha del ingreso a buscar.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void ConsultarIngreso(View v) {
+        if (edtFecha.getText().toString().length() == 0) {
+            edtFecha.setError("Campo obligatorio");
+            estadoFecha = false;
+        } else {
+            estadoFecha = true;
+        }
+        if (estadoFecha) {
+            String fecha = edtFecha.getText().toString();
+            double ingreso = Double.parseDouble(edtIngreso.getText().toString());
+            datos.setFecha(fecha);
+            datos.setIngreso(ingreso);
+            if (conexion.consultarIngreso1(datos)) {
+                edtFecha.setText(datos.getFecha());
+                edtIngreso.setText("" + datos.getIngreso());
+
+            }else{ Toast.makeText(this, "No existe registro con dicha cantidad de $: ", Toast.LENGTH_SHORT).show();
+                Nuevo();
+            }
+        } else {
+            Toast.makeText(this, "Ingrese el monto del articulo a buscar.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
 }

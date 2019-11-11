@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#B9BDBE"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -28,28 +28,37 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="272dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/presupuesto" />
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="20dp"
+                android:background="#1C38CF">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="SISTEMAS21B"
-                android:fontFamily="cursive"
-                android:textColor="#000"
-                android:layout_marginTop="35dp"
-                android:textAlignment="center"
-                android:textSize="25dp"
-                />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/presupuesto" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="195dp"
+                    android:fontFamily="cursive"
+                    android:text="SISTEMAS21B"
+                    android:textAlignment="center"
+                    android:textColor="#000"
+                    android:textSize="25dp" />
+            </androidx.cardview.widget.CardView>
 
             <include layout="@layout/footer" />
 
