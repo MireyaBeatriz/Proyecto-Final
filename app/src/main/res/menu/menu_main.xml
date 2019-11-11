@@ -18,12 +18,12 @@
         android:title="Prueba" />
 
     <item
-        android:id="@+id/action_detalle"
+        android:id="@+id/action_Lista"
         android:orderInCategory="4"
-        android:title="Detalle" />
+        android:title="Lista" />
 
     <item
         android:id="@+id/action_mostrar_gastos"
-        android:orderInCategory="4"
+        android:orderInCategory="5"
         android:title="Mostrar Gastos" />
 </menu>

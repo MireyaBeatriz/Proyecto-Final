@@ -63,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.action_detalle) {
-        Intent i = new Intent(MainActivity.this,DetalleMonto.class);
+        if (id == R.id.action_Lista) {
+        Intent i = new Intent(MainActivity.this,ListaMonto.class);
         startActivity(i);
         return true;
     }

@@ -3,6 +3,6 @@
     <string name="action_monto">Monto</string>
     <string name="action_gastos">gastos</string>
     <string name="action_prueba">prueba</string>
-    <string name="action_detalle">DetalleMonto</string>
+    <string name="action_Lista">Lista</string>
 
 </resources>

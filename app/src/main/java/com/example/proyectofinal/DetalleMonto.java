@@ -1,29 +1,26 @@
 package com.example.proyectofinal;
 
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class DetalleMonto extends AppCompatActivity {
 
-    private EditText edtdetalle;
-    boolean estadodetalle = false;
+    private TextView tv_id, tv_fecha, tv_ingreso;
+    private TextView tv_id1, tv_fecha1, tv_ingreso1;
+
 
 
     Conexion conexion = new Conexion(this);
-   DetalleDto datos = new DetalleDto();
 
-    public DetalleMonto() {
-        // Required empty public constructor
-    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +29,28 @@ public class DetalleMonto extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        edtdetalle = findViewById(R.id.edtdetalle);
+        tv_id = (TextView)findViewById(R.id.tv_id);
+        tv_fecha= (TextView)findViewById(R.id.tv_fecha);
+        tv_ingreso= (TextView)findViewById(R.id.tv_ingreso);
+        tv_id1 = (TextView)findViewById(R.id.tv_id1);
+        tv_fecha1 = (TextView)findViewById(R.id.tv_fecha1);
+        tv_ingreso1 = (TextView)findViewById(R.id.tv_ingreso1);
+
+        Bundle objeto = getIntent().getExtras();
+        MontoDto montoDto = null;
+
+        if(objeto != null){
+
+        }
+        montoDto = (MontoDto)objeto.getSerializable("monto");
+        tv_id.setText(""+montoDto.getIdmonto());
+        tv_fecha.setText(montoDto.getFecha());
+        tv_ingreso.setText(String.valueOf(montoDto.getIngreso()));
+        tv_id1.setText(""+montoDto.getIdmonto());
+
+        tv_fecha1.setText(montoDto.getFecha());
+        tv_ingreso1.setText(String.valueOf(montoDto.getIngreso()));
+
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,41 +62,8 @@ public class DetalleMonto extends AppCompatActivity {
         });
     }
 
-        public void Nuevo(View view) {
-            edtdetalle.setText("");
-            edtdetalle.requestFocus();
 
-            Toast.makeText(this, "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
-            //Toast.makeText(getContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
-        }
-
-        public void Guardar(View view) {
-            if (edtdetalle.getText().toString().length() == 0) {
-                estadodetalle = false;
-                edtdetalle.setError("Campo obligatorio");
-            } else {
-                estadodetalle = true;
-            }
-
-
-            if (estadodetalle) {
-                try {
-                    // datos.setIdmonto(Integer.parseInt(edtFecha.Null);
-                    datos.setDetalle(edtdetalle.getText().toString());
-
-                    //if(conexion.insertardatos(datos)){ //if(conexion.InsertRegister(datos)){
-                    if (conexion.InsertDetalle(datos)) {
-                        Toast.makeText(this, "Registro agregado satisfactoriamente!", Toast.LENGTH_SHORT).show();
-                        Nuevo(view);
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Error. Ya existe un registro\n" + " detalle: " + edtdetalle.getText().toString(), Toast.LENGTH_LONG).show();
-                        Nuevo(view);
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(this, "ERROR. Ya existe.", Toast.LENGTH_SHORT).show();
-                }
-            }
 
 
         }
-}
+

@@ -11,104 +11,199 @@
     tools:showIn="@layout/activity_detalle_monto">
 
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Detalle de Monto ingresado"
-        android:textColor="#000"
-        android:layout_marginTop="15dp"
-        android:textSize="30dp"
-        android:textAlignment="center"
-        android:fontFamily="cursive"
-        />
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp" >
 
+        <ImageView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_search" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detalle de Presupuesto"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:textColor="#445DE4"
+            android:background="#fff"
+            android:textAlignment="center"/>
+    </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Id: "
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="#141414" />
+
+            <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="xxxxx"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textColor="#03A9F4" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginTop="5dp"
-                android:background="#000" />
+                android:layout_height="wrap_content"
+                android:text="Fecha: "
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:inputType="date"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="#0F0F0F" />
 
-
-
-            <EditText
-                android:id="@+id/edtdetalle"
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:layout_marginTop="15dp"
-                android:background="#E0A8A8"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:hint="Ingrese Detalle Monto:"
-                android:paddingLeft="15dp"
-                android:fontFamily="cursive"
-                android:inputType="text"
-                android:textSize="25dp"
-                android:textColorHint="#000"
-                android:textColor="#000"/>
-
-            <Spinner
-                android:id="@+id/spnGasto"
+            <TextView android:id="@+id/tv_fecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dialog">
+                android:text="xxxxxxx"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textColor="#03A9F4" />
 
-            </Spinner>
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingreso: "
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="#111111" />
 
-            <Spinner
-                android:id="@+id/spnMonto"
+            <TextView android:id="@+id/tv_ingreso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dialog">
+                android:text="000.00"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textColor="#03A9F4" />
 
-            </Spinner>
+            <!--<android.support.v7.widget.CardView-->
+            <androidx.cardview.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardElevation="4dp"
+                card_view:cardCornerRadius="3dp"
+                android:layout_margin="6dp">
 
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="6dp"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="0dp"
+                        android:background="#A1D5EC" >
+
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_search"/>
+
+
+                        <TextView android:id="@+id/tvInformId"
+                            android:textColor="#000"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Resultado de la busqueda del presupuesto"
+                            android:padding="5dp" />
+                    </LinearLayout>
+
+                    <TextView android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance"
+                        android:text="Id:"
+                        android:layout_marginTop="25dp" />
+
+                    <TextView
+                        android:id="@+id/tv_id1"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:text="xxxxx" />
+
+                    <TextView android:id="@+id/tvUserName1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance"
+                        android:text="Fecha:" />
+
+                    <TextView android:id="@+id/tv_fecha1"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxxxx" />
+
+                    <TextView android:id="@+id/tvUserName2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@android:style/TextAppearance"
+                        android:text="Ingreso:" />
+
+                    <TextView android:id="@+id/tv_ingreso1"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:layout_height="wrap_content"
+                        android:text="000.00" />
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <Button
-                    android:layout_width="133dp"
-                    android:layout_height="76dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#454649"
-                    android:textColor="#ffff"
-                    android:layout_marginRight="80dp"
-                    android:text="Guardar"
-                    android:onClick="Guardar"/>
-
-                <Button
-                    android:layout_width="133dp"
-                    android:layout_height="76dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="15dp"
-                    android:background="#474749"
-                    android:textColor="#ffff"
-                    android:layout_marginRight="80dp"
-                    android:text="Nuevo"
-                    android:onClick="Nuevo"/>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="115dp"
+                android:layout_height="match_parent"
+               android:layout_marginTop="10dp"
                 android:orientation="vertical">
+
 
                 <include layout="@layout/footer" />
                 />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
