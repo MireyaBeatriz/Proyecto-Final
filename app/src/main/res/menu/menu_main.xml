@@ -21,4 +21,9 @@
         android:id="@+id/action_detalle"
         android:orderInCategory="4"
         android:title="Detalle" />
+
+    <item
+        android:id="@+id/action_mostrar_gastos"
+        android:orderInCategory="4"
+        android:title="Mostrar Gastos" />
 </menu>

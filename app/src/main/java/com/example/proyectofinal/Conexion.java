@@ -87,4 +87,32 @@ public class Conexion extends SQLiteOpenHelper {
         return estado;
 
     }
+    public boolean InsertarGastos(GastosDto datos) {
+        boolean estado = true;
+        try {
+            int idgasto = datos.getIdgasto();
+            String descripcion = datos.getEt_descripcion();
+            String fecha = datos.getEt_fecha();
+            double cantidad = datos.getEt_monto();
+
+            Cursor fila = bd().rawQuery("select idgasto from gasto where idgasto='" + idgasto + "'", null);
+            if (fila.moveToFirst() == true) {
+                estado = false;
+            } else {
+                String SQL = "INSERT INTO gasto \n" +
+                        "(idgasto, descripcion, fecha, cantidad)\n" +
+                        "VALUES \n" +
+                        "('" + String.valueOf(idgasto) + "', '" + descripcion + "','" + fecha + "', '" + String.valueOf(cantidad) + "');";
+                bd().execSQL(SQL);
+                bd().close();
+                estado = true;
+            }
+        } catch (Exception e) {
+            estado = true;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+
+    }
+
 }
