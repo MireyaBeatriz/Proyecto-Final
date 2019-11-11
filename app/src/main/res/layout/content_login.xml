@@ -1,79 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:showIn="@layout/activity_login"
-    android:background="#E08BEE"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/grad_bg">
 
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
 
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imgView_logo"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/login" />
 
-        <LinearLayout
-            android:id="@+id/email_login_form"
-            android:layout_width="match_parent"
+
+        <RelativeLayout
+            android:id="@+id/rellay1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:visibility="visible">
 
 
-            <ImageView
-                android:id="@+id/image_logo"
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="100dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="INICIAR SESIÓN"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/linlay1"
                 android:layout_width="match_parent"
-                android:layout_height="316dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_login"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="10dp"
+                        android:textColorHint="@color/colorAccent">
+
+                        <EditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/rubi"
+                            android:drawableStart="@drawable/ic_person"
+                            android:drawablePadding="5dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:hint="Ingrese su e-mail"
+                            android:inputType="textEmailAddress"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="15sp"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="10"
+                        app:errorEnabled="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:passwordToggleEnabled="true"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="10dp"
+                        android:textColorHint="@color/colorAccent"
+                        >
+
+                        <EditText
+                            android:id="@+id/etPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/rubi"
+                            android:drawableStart="@drawable/ic_key"
+                            android:drawablePadding="5dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="15sp"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:maxLength="10"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/linlay1"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
-                app:srcCompat="@drawable/login" />
+                android:fontFamily="sans-serif-medium"
+                android:paddingLeft="70dp"
+                android:paddingRight="70dp"
+                android:text="ENTRAR"
+                android:background="@drawable/rubi"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                />
 
-        </LinearLayout>
-    </ScrollView>
 
-    <EditText
-        android:id="@+id/usuario"
-        android:layout_width="322dp"
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rellay2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="10"
-        android:maxLines="1"
-        android:text="Usuario"
-        android:textSize="30dp"
-        android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black" />
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="visible">
+        <!--android:layout_alignParentBottom="true"-->
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:text="Prueba"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#4E636F" />
 
-    <EditText
-        android:id="@+id/contraseña"
-        android:layout_width="322dp"
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rellay3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLength="10"
-        android:maxLines="1"
-        android:text="Contraseña"
-        android:textSize="30dp"
-        android:layout_marginTop="30dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="35dp"
+        android:gravity="center"
+        android:visibility="visible">
+        <!--android:layout_alignParentTop="true"-->
 
-    <Button
-        android:id="@+id/mensaje"
-        android:layout_width="320dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="15dp"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:background="@drawable/rubi" />
+        <Button
+            android:id="@+id/btnOlvidoClave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif"
+            android:text="@string/pass"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#9BABB3"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            />
 
-</LinearLayout>
+    </RelativeLayout>
 
+
+</RelativeLayout>

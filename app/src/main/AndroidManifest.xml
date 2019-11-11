@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".prueba" />
-        <activity android:name=".Login" />
         <activity android:name=".ListaMonto"/>
         <activity
             android:name=".Gastos"
