@@ -33,8 +33,7 @@ class Mantenimiento_Usuarios {
         pd.show();
 
         String url = Config.urlLogin;
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
 
                 new Response.Listener<String>() {
                     @RequiresApi(api = Build.VERSION_CODES.M)
