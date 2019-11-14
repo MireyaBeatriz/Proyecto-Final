@@ -118,7 +118,7 @@ public class Gastos extends AppCompatActivity {
                 Toast.makeText(this, "Ingrese la descripción del gasto a buscar.", Toast.LENGTH_SHORT).show();
             }
         }
-    public void modificacion(View v) {
+    /*public void modificacion(View v) {
         if(et_descripcion.getText().toString().length()==0){
             et_descripcion.setError("campo obligatorio");
             estadodescripcion = false;
@@ -140,8 +140,8 @@ public class Gastos extends AppCompatActivity {
                 Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-    public void eliminarporfecha(View v) {
+    }*/
+   /* public void eliminarporfecha(View v) {
         if(et_fecha.getText().toString().length()==0){
             et_fecha.setError("campo obligatorio");
             estadofecha = false;
@@ -158,7 +158,7 @@ public class Gastos extends AppCompatActivity {
                 limpiarDatos();
             }
         }
-    }
+    }*/
 
 }
 
