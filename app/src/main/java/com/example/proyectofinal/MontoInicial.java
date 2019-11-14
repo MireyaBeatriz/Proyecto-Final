@@ -47,7 +47,7 @@ public class MontoInicial extends AppCompatActivity {
         });
     }
 
-    public void Nuevo() {
+    public void Nuevo(View view) {
         edtFecha.setText("");
         edtIngreso.setText("");
         edtFecha.requestFocus();
@@ -130,7 +130,4 @@ public class MontoInicial extends AppCompatActivity {
             Toast.makeText(this, "Ingrese monto a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
-
-
-
 }

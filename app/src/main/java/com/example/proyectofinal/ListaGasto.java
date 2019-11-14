@@ -21,7 +21,7 @@ public class ListaGasto extends AppCompatActivity {
     ListView listView;
     ArrayList<String> list;
     ArrayAdapter adapter;
-    String[] version = {"Aestro","Blender","CupCake","Donut","Eclair","Froyo","GingerBread","HoneyComb","IceCream Sandwich", "Jelly Bean","Kitkat","Lolipop","Marshmallow","Nought","Oreo"};
+    String[] version = {"Aestro", "Blender", "CupCake", "Donut", "Eclair", "Froyo", "GingerBread", "HoneyComb", "IceCream Sandwich", "Jelly Bean", "Kitkat", "Lolipop", "Marshmallow", "Nought", "Oreo"};
     Conexion conexion = new Conexion(this);
     GastosDto datos = new GastosDto();
 
@@ -31,13 +31,13 @@ public class ListaGasto extends AppCompatActivity {
         setContentView(R.layout.activity_lista_gasto);
 
 
-        listViewGasto= (ListView) findViewById(R.id.listViewGasto);
+        listViewGasto = (ListView) findViewById(R.id.listViewGasto);
         searchView = (SearchView) findViewById(R.id.searchView);
         //searchView = findViewById(R.id.searchView);
         // conexion.consultaListaArticulos();
 
         //ArrayAdapter<CharSequence> adaptador = new ArrayAdapter(this, android.R.layout.simple_spinner_item, listaArticulos);
-        adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, conexion.consultaListagasto1());
+        //adaptador = new ArrayAdapter(this, android.R.layout.simple_list_item_1, conexion.consultaListagasto1());
         listViewGasto.setAdapter(adaptador);
 
         /* list = new ArrayList<>();
@@ -47,17 +47,20 @@ public class ListaGasto extends AppCompatActivity {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
-            @Override public boolean onQueryTextSubmit(String s) {
-                return false; }
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
 
-            @Override public boolean onQueryTextChange(String s) { //if(conexion.consultaListaArticulos1().contains(s)){ /* if(list.contains(s)){ adapter.getFilter().filter(s);
+            @Override
+            public boolean onQueryTextChange(String s) { //if(conexion.consultaListaArticulos1().contains(s)){ /* if(list.contains(s)){ adapter.getFilter().filter(s);
                 // } return true; } */
                 String text = s;
                 adaptador.getFilter().filter(text);
                 return false;
             }
         });
-        listViewGasto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*listViewGasto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
                 String informacion="Id: "
@@ -77,5 +80,7 @@ public class ListaGasto extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+}*/
     }
 }

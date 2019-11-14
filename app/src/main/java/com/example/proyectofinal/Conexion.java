@@ -1,24 +1,17 @@
 package com.example.proyectofinal;
 
-import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Conexion extends SQLiteOpenHelper {
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
-    ArrayList<String> listaGasto;
-    ArrayList<GastosDto> gastoList;
-
-    boolean estadoDelete;
+    MontoDto datos = new MontoDto();
 
     public Conexion(Context context) {
 
@@ -28,7 +21,7 @@ public class Conexion extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table usuario(idusuario  INTEGER PRIMARY KEY AUTOINCREMENT, nombre text, password text)");
-        sqLiteDatabase.execSQL("create table monto(idmonto  INTEGER PRIMARY KEY AUTOINCREMENT, cantidad real, fecha date)");
+        sqLiteDatabase.execSQL("create table monto(idmonto  INTEGER PRIMARY KEY AUTOINCREMENT, ingreso real, fecha date)");
         sqLiteDatabase.execSQL("create table gasto(idgasto  INTEGER PRIMARY KEY AUTOINCREMENT, descripcion text, cantidad real, fecha date )");
        // sqLiteDatabase.execSQL("create table totalmonto(idtotalmonto  INTEGER PRIMARY KEY AUTOINCREMENT, detalle text,  idgasto, idmonto INTEGER, constraint ((fk_gasto)(fk_monto)) foreign key(idgasto) references gasto(idgasto), idmonto INTEGER, constraint fk_monto foreign key(idmonto) references monto(idmonto))");
         sqLiteDatabase.execSQL("create table totalmonto(id_totalmonto  INTEGER PRIMARY KEY AUTOINCREMENT, detalle text, idmonto INTEGER, idgasto INTEGER, constraint fk_monto foreign key(idmonto) references monto(idmonto), constraint fk_gasto foreign key(idgasto) references gasto(idgasto))");
@@ -43,7 +36,32 @@ public class Conexion extends SQLiteOpenHelper {
         SQLiteDatabase bd = this.getWritableDatabase();
         return bd;
     }
+    public boolean InsertMonto(MontoDto datos) {
+        boolean estado = true;
+        try {
+            int idmonto = datos.getIdmonto();
+            String fecha = datos.getFecha();
+            double cantidad = datos.getIngreso();
 
+            Cursor fila = bd().rawQuery("select idmonto from monto where idmonto='" + idmonto + "'", null);
+            if (fila.moveToFirst() == true) {
+                estado = false;
+            } else {
+                String SQL = "INSERT INTO monto \n" +
+                        "(idmonto, fecha, cantidad)\n" +
+                        "VALUES \n" +
+                        "('" + String.valueOf(idmonto) + "', '" + fecha + "', '" + String.valueOf(cantidad) + "');";
+                bd().execSQL(SQL);
+                bd().close();
+                estado = true;
+            }
+        } catch (Exception e) {
+            estado = true;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+
+    }
     public boolean InsertarGastos(GastosDto datos) {
         boolean estado = true;
         try {
@@ -71,267 +89,34 @@ public class Conexion extends SQLiteOpenHelper {
         return estado;
 
     }
-    public boolean consultarDescripcion(GastosDto datos) {
 
-        boolean estado = true;
-        int resultado;
-        SQLiteDatabase bd = this.getWritableDatabase();
-        try {
-            String descripcion = datos.getEt_descripcion();
-            Cursor fila = bd.rawQuery("select descripcion, fecha, monto from gasto where descripcion='" + descripcion + "'", null);
-            if (fila.moveToFirst()) {
-                datos.setEt_descripcion((fila.getString(0)));
-                datos.setEt_fecha(fila.getString(1));
-                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
-                estado = true;
-            } else {
-                estado = false;
-            }
-            bd.close();
-        } catch (Exception e) {
-            estado = false;
-            Log.e("error.", e.toString());
-        }
-        return estado;
-    }
-    /*public boolean modificar(GastosDto datos) {
-        boolean estado = true;
-        int resultado;
-        SQLiteDatabase bd = this.getWritableDatabase();
-
-        try {
-
-            String descripcion = datos.getEt_descripcion();
-            String fecha = datos.getEt_fecha();
-            double monto = datos.getEt_monto();
-
-            //String[] parametros = {String.valueOf(datos.getCodigo())};
-
-            ContentValues registro = new ContentValues();
-            registro.put("descripcion", descripcion);
-            registro.put("fecha", fecha);
-            registro.put("monto", monto);
-
-            // int cant = (int) this.getWritableDatabase().update("articulos", registro, "codigo=" + codigo, null);
-            int cant = (int) bd.update("gasto", registro, "descripcion=" + descripcion, null);
-            // bd.update("articulos",registro,"codigo=?",parametros);
-
-            bd.close();
-            if (cant > 0) estado = true;
-            else estado = false;
-
-        } catch (Exception e) {
-            estado = false;
-            Log.e("error.", e.toString());
-        }
-        return estado;
-    }
-    public boolean eliminarporfecha(final Context context, final GastosDto datos) {
-        //SQLiteDatabase bd = this.getWritableDatabase();
-        estadoDelete = true;
-        try {
-            String fecha = datos.getEt_fecha();
-            Cursor fila = bd().rawQuery("select * from gasto where fecha=" + fecha, null);
-            if (fila.moveToFirst()) {
-                datos.setEt_descripcion((fila.getString(0)));
-                datos.setEt_fecha(fila.getString(1));
-                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setIcon(R.drawable.ic_delete);
-                builder.setTitle("Warning");
-                builder.setMessage("¿Esta seguro de borrar el registro? \nfecha: " + datos.getEt_fecha() + "\nfecha: " + datos.getEt_fecha());
-                builder.setCancelable(false);
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
-                        String fecha = datos.getEt_fecha();
-                        int cant = bd().delete("gasto", "fecha=" + fecha, null);
-                        //bd().delete("articulos","codigo=?",parametros);
-
-                        if (cant > 0) {
-                            estadoDelete = true;
-                            Toast.makeText(context, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            estadoDelete = false;
-                        }
-                        bd().close();
-                    }
-                });
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            } else {
-                Toast.makeText(context, "No hay resultados encontrados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
-            estadoDelete = false;
-            Log.e("Error.", e.toString());
-        }
-        return estadoDelete;
-    }
-
-
-    /*public boolean consultaGasto(MontoDto datos) {
-
-        boolean estado = true;
-        int resultado;
-        SQLiteDatabase bd = this.getWritableDatabase();
-        try {
-            String descripcion = datos.getEt_descripcion();
-            Cursor fila = bd.rawQuery("select descripcion, fecha, monto from gasto where descripcion='" + descripcion + "'", null);
-            if (fila.moveToFirst()) {
-                datos.setEt_descripcion((fila.getString(0)));
-                datos.setEt_fecha(fila.getString(1));
-                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
-                estado = true;
-            } else {
-                estado = false;
-            }
-            bd.close();
-        } catch (Exception e) {
-            estado = false;
-            Log.e("error.", e.toString());
-        }
-        return estado;
-    }*/
- /*   public boolean modificar(GastosDto datos) {
-        boolean estado = true;
-        int resultado;
-        SQLiteDatabase bd = this.getWritableDatabase();
-
-        try {
-
-            String descripcion = datos.getEt_descripcion();
-            String fecha = datos.getEt_fecha();
-            double monto = datos.getEt_monto();
-
-            //String[] parametros = {String.valueOf(datos.getCodigo())};
-
-            ContentValues registro = new ContentValues();
-            registro.put("descripcion", descripcion);
-            registro.put("fecha", fecha);
-            registro.put("monto", monto);
-
-            // int cant = (int) this.getWritableDatabase().update("articulos", registro, "codigo=" + codigo, null);
-            int cant = (int) bd.update("gasto", registro, "descripcion=" + descripcion, null);
-            // bd.update("articulos",registro,"codigo=?",parametros);
-
-            bd.close();
-            if (cant > 0) estado = true;
-            else estado = false;
-
-        } catch (Exception e) {
-            estado = false;
-            Log.e("error.", e.toString());
-        }
-        return estado;
-    }
-    public boolean eliminarporfecha(final Context context, final GastosDto datos) {
-        //SQLiteDatabase bd = this.getWritableDatabase();
-        estadoDelete = true;
-        try {
-            String fecha = datos.getEt_fecha();
-            Cursor fila = bd().rawQuery("select * from gasto where fecha=" + fecha, null);
-            if (fila.moveToFirst()) {
-                datos.setEt_descripcion((fila.getString(0)));
-                datos.setEt_fecha(fila.getString(1));
-                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setIcon(R.drawable.ic_delete);
-                builder.setTitle("Warning");
-                builder.setMessage("¿Esta seguro de borrar el registro? \nfecha: " + datos.getEt_fecha() + "\nfecha: " + datos.getEt_fecha());
-                builder.setCancelable(false);
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
-                        String fecha = datos.getEt_fecha();
-                        int cant = bd().delete("gasto", "fecha=" + fecha, null);
-                        //bd().delete("articulos","codigo=?",parametros);
-
-                        if (cant > 0) {
-                            estadoDelete = true;
-                            Toast.makeText(context, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            estadoDelete = false;
-                        }
-                        bd().close();
-                    }
-                });
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            } else {
-                Toast.makeText(context, "No hay resultados encontrados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
-            estadoDelete = false;
-            Log.e("Error.", e.toString());
-        }
-        return estadoDelete;
-    }
-*/
-    //-----------------------------------------------------METODOS DE MONTO-----------------------------------------------------------------------------------------
-
-    public boolean InsertMonto(MontoDto datos) {
-        boolean estado = true;
-        try {
-            int idmonto = datos.getIdmonto();
-            String fecha = datos.getFecha();
-            double cantidad = datos.getIngreso();
-
-            Cursor fila = bd().rawQuery("select idmonto from monto where idmonto='" + idmonto + "'", null);
-            if (fila.moveToFirst() == true) {
-                estado = false;
-            } else {
-                String SQL = "INSERT INTO monto \n" +
-                        "(idmonto, fecha, cantidad)\n" +
-                        "VALUES \n" +
-                        "('" + String.valueOf(idmonto) + "', '" + fecha + "', '" + String.valueOf(cantidad) + "');";
-                bd().execSQL(SQL);
-                bd().close();
-                estado = true;
-            }
-        } catch (Exception e) {
-            estado = true;
-            Log.e("error.", e.toString());
-        }
-        return estado;
-
-    }
 
     public boolean consultaFecha1(MontoDto datos) {
-    boolean estado = true;
-    int resultado;
-    //SQLiteDatabase bd = this.getWritableDatabase();
-    SQLiteDatabase bd = this.getReadableDatabase();
-    try {
-        String[] parametros = {String.valueOf(datos.getFecha())};
-        String[] campos = {"fecha", "ingreso"};
-        Cursor fila = bd.query("monto", campos, "fecha=?", parametros, null, null, null);
-        // fila.moveToFirst();
-        if (fila.moveToFirst()) {
-            datos.setFecha(fila.getString(0));
-            datos.setIngreso(Double.parseDouble(fila.getString(1)));
-            estado = true;
-        } else {
+        boolean estado = true;
+        int resultado;
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        SQLiteDatabase bd = this.getReadableDatabase();
+        try {
+            String[] parametros = {String.valueOf(datos.getFecha())};
+            String[] campos = {"fecha", "ingreso"};
+            Cursor fila = bd.query("monto", campos, "fecha=?", parametros, null, null, null);
+            // fila.moveToFirst();
+            if (fila.moveToFirst()) {
+                datos.setFecha(fila.getString(0));
+                datos.setIngreso(Double.parseDouble(fila.getString(1)));
+                estado = true;
+            } else {
+                estado = false;
+            }
+            fila.close();
+            bd.close();
+        } catch (Exception e) {
             estado = false;
+            Log.e("error.", e.toString());
         }
-        fila.close();
-        bd.close();
-    } catch (Exception e) {
-        estado = false;
-        Log.e("error.", e.toString());
+        return estado;
     }
-    return estado;
-}
+
 
     public boolean consultarIngreso1(MontoDto datos) {
         boolean estado = true;
@@ -359,8 +144,6 @@ public class Conexion extends SQLiteOpenHelper {
         return estado;
     }
 
-
-    //-------------------------------------------------------------------METODOS DE LAS CONSULTAS---------------------------------------------------------------------------
     public ArrayList<MontoDto> consultaListaMonto() {
         boolean estado = false;
         //SQLiteDatabase bd = this.getWritableDatabase();
@@ -403,6 +186,9 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return listaMonto;
     }
+    //Fin del Spinner.
+
+    // Inicio del Método para crear lista de datos de la BD en el ListView.
 
     public ArrayList<String> consultaListaMonto1(){
         boolean estado = false;
@@ -439,92 +225,4 @@ public class Conexion extends SQLiteOpenHelper {
         //return articulosList;
         return listaMonto;
     }
-    //Fin del Spinner.
-
-    // public void consultaListaArticulos(){
-    public ArrayList<GastosDto> consultaListaGasto() {
-        boolean estado = false;
-        //SQLiteDatabase bd = this.getWritableDatabase();
-        SQLiteDatabase bd = this.getReadableDatabase();
-        GastosDto gasto = null;
-        //Creamos la instancia vacia.
-        gastoList = new ArrayList<GastosDto>();
-
-        try {
-            Cursor fila = bd.rawQuery("select * from gasto", null);
-
-            while (fila.moveToNext()) {
-
-                gasto = new GastosDto();
-                gasto.setIdgasto(fila.getInt(0));
-                gasto.setEt_fecha(fila.getString(1));
-                gasto.setEt_descripcion(fila.getString(2));
-                gasto.setEt_monto(fila.getDouble(3));
-
-                gastoList.add(gasto);
-
-                Log.i("id", String.valueOf(gasto.getIdgasto()));
-                Log.i("fecha", gasto.getEt_fecha().toString());
-                Log.i("descripción", gasto.getEt_descripcion().toString());
-                Log.i("monto", String.valueOf(gasto.getEt_monto()));
-            }
-            obtenerListagasto();
-
-        } catch (Exception e) {
-
-        }
-        return gastoList;
-    }
-
-    public ArrayList<String> obtenerListagasto() {
-        listaGasto = new ArrayList<String>();
-        listaGasto.add("seleccione");
-
-        for (int i = 0; i < gastoList.size(); i++) {
-            listaGasto.add(gastoList.get(i).getIdgasto() + " ~ " + gastoList.get(i).getEt_descripcion());
-
-        }
-        return listaGasto;
-    }
-    //Fin del Spinner.
-
-    // Inicio del Método para crear lista de datos de la BD en el ListView.
-
-    public ArrayList<String> consultaListagasto1(){
-        boolean estado = false;
-        //SQLiteDatabase bd = this.getWritableDatabase();
-        SQLiteDatabase bd = this.getReadableDatabase();
-
-        GastosDto gasto = null;
-        //Creamos la instancia vacia.
-        gastoList = new ArrayList<GastosDto>();
-
-        try{
-            Cursor fila = bd.rawQuery("select * from gasto",null);
-            while (fila.moveToNext()){
-                gasto = new GastosDto();
-                gasto.setIdgasto(fila.getInt(0));
-                gasto.setEt_descripcion(fila.getString(1));
-                gasto.setEt_fecha(fila.getString(2));
-                gasto.setEt_monto(fila.getDouble(3));
-
-                gastoList.add(gasto);
-            }
-            listaGasto = new ArrayList<String>();
-            //listaArticulos = new ArrayList<>();
-            // listaArticulos.add("Seleccione");
-
-            for(int i=0;i<=gastoList.size();i++){
-                // listaArticulos.add(String.valueOf(articulosList.get(i).getCodigo()));
-                listaGasto.add(gastoList.get(i).getIdgasto()+" ~ "+gastoList.get(i).getEt_descripcion());
-            }
-            //bd().close();
-            // return listaArticulos;
-        }catch (Exception e){
-
-        }
-        //return articulosList;
-        return listaGasto;
-    }
-
 }

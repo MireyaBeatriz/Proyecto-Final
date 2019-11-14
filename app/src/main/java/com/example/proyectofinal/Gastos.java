@@ -95,7 +95,7 @@ public class Gastos extends AppCompatActivity {
             }
         }
     }
-    public void consultapordescripcion(View v) {
+   /* public void consultapordescripcion(View v) {
             if (et_descripcion.getText().toString().length() == 0) {
                 et_descripcion.setError("Campo obligatorio");
                 estadodescripcion = false;
