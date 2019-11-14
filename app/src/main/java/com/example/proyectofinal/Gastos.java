@@ -107,52 +107,33 @@ public class Gastos extends AppCompatActivity {
             Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
-   /* public void consultapordescripcion(View v) {
-            if (et_descripcion.getText().toString().length() == 0) {
-                et_descripcion.setError("Campo obligatorio");
-                estadodescripcion = false;
-            } else {
-                estadodescripcion = true;
-            }
-            if (estadodescripcion) {
-                String descripcion = et_descripcion.getText().toString();
-                datos.setEt_descripcion(descripcion);
-                if (conexion.consultarDescripcion(datos)) {
-                    et_descripcion.setText("" + datos.getEt_descripcion());
-                    et_fecha.setText(datos.getEt_fecha());
-                    et_monto.setText("" + datos.getEt_monto());
-                    //Toast.makeText(this, "Se encontro uno", Toast.LENGTH_SHORT).show();
+    /*public void ConsultarDescripcion(View v) {
 
-                }else{ Toast.makeText(this, "No existe un gasto con dicha descripción", Toast.LENGTH_SHORT).show();
-                    limpiarDatos();
-                }
-            } else {
-                Toast.makeText(this, "Ingrese la descripción del gasto a buscar.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    /*public void modificacion(View v) {
-        if(et_descripcion.getText().toString().length()==0){
-            et_descripcion.setError("campo obligatorio");
+        if (et_descripcion.getText().toString().length() == 0) {
+            et_descripcion.setError("Campo obligatorio");
             estadodescripcion = false;
-
-        }else { estadodescripcion=true;
+        } else {
+            estadodescripcion = true;
         }
 
-        if(estadodescripcion) {
+        if (estadodescripcion) {
             String descripcion = et_descripcion.getText().toString();
-            String fecha = et_fecha.getText().toString();
-            double monto = Double.parseDouble(et_monto.getText().toString());
-            datos.setEt_descripcion((descripcion));
-            datos.setEt_fecha(descripcion);
-            datos.setEt_monto(monto);
+            datos.setEt_descripcion(descripcion);
 
-            if(conexion.modificar(datos)){
-                Toast.makeText(this, "Registro Modificado Correctamente.", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            if (conexion.consultaFechaGasto(datos)) {
+                et_descripcion.setText("" + datos.getEt_descripcion());
+                et_fecha.setText(datos.getEt_fecha());
+                et_monto.setText("" + datos.getEt_monto());
+                //Toast.makeText(this, "Se encontro uno", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "No existe fecha con ese dato", Toast.LENGTH_SHORT).show();
+
             }
+        } else {
+            Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }*/
+
    /* public void eliminarporfecha(View v) {
         if(et_fecha.getText().toString().length()==0){
             et_fecha.setError("campo obligatorio");

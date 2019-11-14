@@ -92,7 +92,33 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return estado;
     }
-
+   /* public boolean consultaDescripcion(GastosDto datos) {
+        boolean estado = true;
+        int resultado;
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        SQLiteDatabase bd = this.getReadableDatabase();
+        try {
+            String[] parametros = {String.valueOf(datos.getEt_fecha())};
+            String[] campos = {"descripcion", "fecha", "monto"};
+            Cursor fila = bd.query("gasto", campos, "descripcion=?", parametros, null, null, null);
+            // fila.moveToFirst();
+            if (fila.moveToFirst()) {
+                datos.setEt_descripcion(fila.getString(0));
+                datos.setEt_fecha(fila.getString(1));
+                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
+                estado = true;
+            } else {
+                estado = false;
+            }
+            fila.close();
+            bd.close();
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+    }
+*/
 
     public boolean consultaFecha1(MontoDto datos) {
         boolean estado = true;
