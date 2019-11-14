@@ -11,6 +11,9 @@ import java.util.ArrayList;
 public class Conexion extends SQLiteOpenHelper {
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
+
+    ArrayList<String> listaGasto;
+    ArrayList<GastosDto> gastoList;
     MontoDto datos = new MontoDto();
 
     public Conexion(Context context) {
@@ -224,5 +227,92 @@ public class Conexion extends SQLiteOpenHelper {
         }
         //return articulosList;
         return listaMonto;
+    }
+
+
+    // public void consultaListaArticulos(){
+    public ArrayList<GastosDto> consultaListaGasto() {
+        boolean estado = false;
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        SQLiteDatabase bd = this.getReadableDatabase();
+        GastosDto gasto = null;
+        //Creamos la instancia vacia.
+        gastoList = new ArrayList<GastosDto>();
+
+        try {
+            Cursor fila = bd.rawQuery("select * from gasto", null);
+
+            while (fila.moveToNext()) {
+
+                gasto = new GastosDto();
+                gasto.setIdgasto(fila.getInt(0));
+                gasto.setEt_fecha(fila.getString(1));
+                gasto.setEt_descripcion(fila.getString(2));
+                gasto.setEt_monto(fila.getDouble(3));
+
+                gastoList.add(gasto);
+
+                Log.i("id", String.valueOf(gasto.getIdgasto()));
+                Log.i("fecha", gasto.getEt_fecha().toString());
+                Log.i("descripción", gasto.getEt_descripcion().toString());
+                Log.i("monto", String.valueOf(gasto.getEt_monto()));
+            }
+            obtenerListagasto();
+
+        } catch (Exception e) {
+
+        }
+        return gastoList;
+    }
+
+    public ArrayList<String> obtenerListagasto() {
+        listaGasto = new ArrayList<String>();
+        listaGasto.add("seleccione");
+
+        for (int i = 0; i < gastoList.size(); i++) {
+            listaGasto.add(gastoList.get(i).getIdgasto() + " ~ " + gastoList.get(i).getEt_descripcion());
+
+        }
+        return listaGasto;
+    }
+    //Fin del Spinner.
+
+    // Inicio del Método para crear lista de datos de la BD en el ListView.
+
+    public ArrayList<String> consultaListagasto1(){
+        boolean estado = false;
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        SQLiteDatabase bd = this.getReadableDatabase();
+
+        GastosDto gasto = null;
+        //Creamos la instancia vacia.
+        gastoList = new ArrayList<GastosDto>();
+
+        try{
+            Cursor fila = bd.rawQuery("select * from gasto",null);
+            while (fila.moveToNext()){
+                gasto = new GastosDto();
+                gasto.setIdgasto(fila.getInt(0));
+                gasto.setEt_descripcion(fila.getString(1));
+                gasto.setEt_fecha(fila.getString(2));
+                gasto.setEt_monto(fila.getDouble(3));
+
+                gastoList.add(gasto);
+            }
+            listaGasto = new ArrayList<String>();
+            //listaArticulos = new ArrayList<>();
+            // listaArticulos.add("Seleccione");
+
+            for(int i=0;i<=gastoList.size();i++){
+                // listaArticulos.add(String.valueOf(articulosList.get(i).getCodigo()));
+                listaGasto.add(gastoList.get(i).getIdgasto()+" ~ "+gastoList.get(i).getEt_descripcion());
+            }
+            //bd().close();
+            // return listaArticulos;
+        }catch (Exception e){
+
+        }
+        //return articulosList;
+        return listaGasto;
     }
 }
