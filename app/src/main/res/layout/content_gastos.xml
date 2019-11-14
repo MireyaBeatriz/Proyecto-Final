@@ -90,7 +90,7 @@
             android:background="@drawable/ic_delete"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="40dp"
-            android:onClick="eliminarporfecha"/>
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -105,7 +105,7 @@
             android:background="@drawable/ic_edit"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="90dp"
-        android:onClick="modificacion"/>
+       />
 
         <Button
             android:id="@+id/btn_buscar"
