@@ -77,6 +77,7 @@ public class Gastos extends AppCompatActivity {
 
         et_descripcion.setText("");
         et_fecha.setText("");
+        et_monto.setText("");
         et_descripcion.requestFocus();
         Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show();
 
