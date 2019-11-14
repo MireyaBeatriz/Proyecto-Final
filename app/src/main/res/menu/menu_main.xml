@@ -12,18 +12,14 @@
         android:id="@+id/action_gastos"
         android:orderInCategory="2"
         android:title="Gastos" />
-    <item
-        android:id="@+id/action_prueba"
-        android:orderInCategory="3"
-        android:title="Prueba" />
 
     <item
         android:id="@+id/action_Lista"
-        android:orderInCategory="4"
+        android:orderInCategory="3"
         android:title="Lista" />
 
     <item
         android:id="@+id/action_mostrar_gastos"
-        android:orderInCategory="5"
+        android:orderInCategory="4"
         android:title="Mostrar Gastos" />
 </menu>
