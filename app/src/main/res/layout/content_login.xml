@@ -164,16 +164,7 @@
         android:layout_marginRight="20dp"
         android:visibility="visible">
         <!--android:layout_alignParentBottom="true"-->
-        <Button
-            android:id="@+id/btnRegistrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fontFamily="sans-serif"
-            android:text="Prueba"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="#4E636F" />
+
 
     </RelativeLayout>
 
