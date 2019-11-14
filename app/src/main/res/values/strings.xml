@@ -4,6 +4,7 @@
     <string name="action_gastos">gastos</string>
     <string name="action_prueba">prueba</string>
     <string name="action_Lista">Lista</string>
+    <string name="action_Lista_gasto">Lista</string>
     <string name="pass">pass</string>
 
 </resources>

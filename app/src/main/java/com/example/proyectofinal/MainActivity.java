@@ -68,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
         return true;
     }
+        if (id == R.id.action_Lista_gasto) {
+            Intent i = new Intent(MainActivity.this,ListaGasto.class);
+            startActivity(i);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
