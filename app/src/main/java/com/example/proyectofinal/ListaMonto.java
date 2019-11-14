@@ -66,6 +66,8 @@ public class ListaMonto extends AppCompatActivity {
                     informacion+="Ingreso: "
                             +conexion.consultaListaMonto().get(pos).getIngreso();
                     MontoDto monto = conexion.consultaListaMonto().get(pos);
+
+
                     Intent intent = new Intent(ListaMonto.this, DetalleMonto.class);
 
                     Bundle bundle = new Bundle();

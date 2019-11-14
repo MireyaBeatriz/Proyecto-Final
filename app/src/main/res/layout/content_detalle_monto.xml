@@ -65,7 +65,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fecha: "
+                android:text="Ingreso: "
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:inputType="date"
@@ -84,7 +84,7 @@
 
             <TextView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingreso: "
+                android:text="Fecha: "
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:textStyle="bold"
@@ -94,7 +94,6 @@
             <TextView android:id="@+id/tv_ingreso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="000.00"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:textColor="#03A9F4" />
@@ -159,7 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@android:style/TextAppearance"
-                        android:text="Fecha:" />
+                        android:text="Ingreso:" />
 
                     <TextView android:id="@+id/tv_fecha1"
                         android:textColor="@color/colorPrimaryDark"
@@ -172,14 +171,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@android:style/TextAppearance"
-                        android:text="Ingreso:" />
+                        android:text="Fecha:" />
 
                     <TextView android:id="@+id/tv_ingreso1"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:layout_height="wrap_content"
-                        android:text="000.00" />
+                         />
 
 
 
