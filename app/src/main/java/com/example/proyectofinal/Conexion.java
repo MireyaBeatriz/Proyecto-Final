@@ -156,7 +156,7 @@ public class Conexion extends SQLiteOpenHelper {
         montoList = new ArrayList<MontoDto>();
 
         try {
-            Cursor fila = bd.rawQuery("select * from articulos", null);
+            Cursor fila = bd.rawQuery("select * from monto", null);
 
             while (fila.moveToNext()) {
 
@@ -167,9 +167,9 @@ public class Conexion extends SQLiteOpenHelper {
 
                 montoList.add(monto);
 
-                Log.i("Id", String.valueOf(monto.getIdmonto()));
-                Log.i("Fecha", monto.getFecha().toString());
-                Log.i("Ingreso", String.valueOf(monto.getIngreso()));
+                Log.i("idmonto", String.valueOf(monto.getIdmonto()));
+                Log.i("fecha", monto.getFecha().toString());
+                Log.i("ingreso", String.valueOf(monto.getIngreso()));
             }
             obtenerListaMonto();
 
