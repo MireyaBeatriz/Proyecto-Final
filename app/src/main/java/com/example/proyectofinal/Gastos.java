@@ -107,7 +107,7 @@ public class Gastos extends AppCompatActivity {
             Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
-    /*public void ConsultarDescripcion(View v) {
+    public void ConsultarDescripcion(View v) {
 
         if (et_descripcion.getText().toString().length() == 0) {
             et_descripcion.setError("Campo obligatorio");
@@ -120,7 +120,7 @@ public class Gastos extends AppCompatActivity {
             String descripcion = et_descripcion.getText().toString();
             datos.setEt_descripcion(descripcion);
 
-            if (conexion.consultaFechaGasto(datos)) {
+            if (conexion.consultaDescripcion(datos)) {
                 et_descripcion.setText("" + datos.getEt_descripcion());
                 et_fecha.setText(datos.getEt_fecha());
                 et_monto.setText("" + datos.getEt_monto());
@@ -132,7 +132,7 @@ public class Gastos extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
-    }*/
+    }
 
    /* public void eliminarporfecha(View v) {
         if(et_fecha.getText().toString().length()==0){

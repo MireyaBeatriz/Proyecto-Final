@@ -92,13 +92,13 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return estado;
     }
-   /* public boolean consultaDescripcion(GastosDto datos) {
+    public boolean consultaDescripcion(GastosDto datos) {
         boolean estado = true;
         int resultado;
         //SQLiteDatabase bd = this.getWritableDatabase();
         SQLiteDatabase bd = this.getReadableDatabase();
         try {
-            String[] parametros = {String.valueOf(datos.getEt_fecha())};
+            String[] parametros = {String.valueOf(datos.getEt_descripcion())};
             String[] campos = {"descripcion", "fecha", "monto"};
             Cursor fila = bd.query("gasto", campos, "descripcion=?", parametros, null, null, null);
             // fila.moveToFirst();
@@ -118,7 +118,6 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return estado;
     }
-*/
 
     public boolean consultaFecha1(MontoDto datos) {
         boolean estado = true;
