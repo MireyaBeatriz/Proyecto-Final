@@ -43,7 +43,7 @@ public class DetalleGasto  extends AppCompatActivity {
         if(objeto != null){
 
         }
-        gastosDto = (GastosDto)objeto.getSerializable("monto");
+        gastosDto = (GastosDto)objeto.getSerializable("gasto");
         tv_id.setText(""+gastosDto.getIdgasto());
         tv_descripcion.setText(""+gastosDto.getEt_descripcion());
         tv_fecha.setText(gastosDto.getEt_fecha());

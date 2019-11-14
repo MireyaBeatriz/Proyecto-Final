@@ -62,7 +62,7 @@ public class ListaGasto extends AppCompatActivity {
             @Override public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
                 String informacion="Id: "
                         +conexion.consultaListaGasto().get(pos).getIdgasto()+"\n";
-                informacion+="descripción:"
+                informacion+="Descripción:"
                         +conexion.consultaListaGasto().get(pos).getEt_descripcion()+"\n";
                 informacion+="Fecha: "
                         +conexion.consultaListaGasto().get(pos).getEt_fecha()+"\n";

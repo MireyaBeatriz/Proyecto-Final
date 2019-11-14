@@ -278,9 +278,9 @@ public class Conexion extends SQLiteOpenHelper {
 
                 gastoList.add(gasto);
 
-                Log.i("id", String.valueOf(gasto.getIdgasto()));
+                Log.i("idgasto", String.valueOf(gasto.getIdgasto()));
                 Log.i("fecha", gasto.getEt_fecha().toString());
-                Log.i("descripción", gasto.getEt_descripcion().toString());
+                Log.i("descripcion", gasto.getEt_descripcion().toString());
                 Log.i("monto", String.valueOf(gasto.getEt_monto()));
             }
             obtenerListagasto();
