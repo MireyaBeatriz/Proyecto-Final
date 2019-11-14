@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ListaMonto"/>
+        <activity android:name=".ListaGasto"/>
         <activity
             android:name=".Gastos"
             android:theme="@style/AppTheme.NoActionBar" />

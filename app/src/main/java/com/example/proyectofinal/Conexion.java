@@ -15,6 +15,8 @@ import java.util.ArrayList;
 public class Conexion extends SQLiteOpenHelper {
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
+    ArrayList<String> listaGasto;
+    ArrayList<GastosDto> gastoList;
 
     boolean estadoDelete;
 
@@ -70,6 +72,7 @@ public class Conexion extends SQLiteOpenHelper {
 
     }
     public boolean consultarDescripcion(GastosDto datos) {
+
         boolean estado = true;
         int resultado;
         SQLiteDatabase bd = this.getWritableDatabase();
@@ -91,7 +94,7 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return estado;
     }
-    public boolean modificar(GastosDto datos) {
+    /*public boolean modificar(GastosDto datos) {
         boolean estado = true;
         int resultado;
         SQLiteDatabase bd = this.getWritableDatabase();
@@ -171,6 +174,110 @@ public class Conexion extends SQLiteOpenHelper {
         return estadoDelete;
     }
 
+
+    /*public boolean consultaGasto(MontoDto datos) {
+
+        boolean estado = true;
+        int resultado;
+        SQLiteDatabase bd = this.getWritableDatabase();
+        try {
+            String descripcion = datos.getEt_descripcion();
+            Cursor fila = bd.rawQuery("select descripcion, fecha, monto from gasto where descripcion='" + descripcion + "'", null);
+            if (fila.moveToFirst()) {
+                datos.setEt_descripcion((fila.getString(0)));
+                datos.setEt_fecha(fila.getString(1));
+                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
+                estado = true;
+            } else {
+                estado = false;
+            }
+            bd.close();
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+    }*/
+ /*   public boolean modificar(GastosDto datos) {
+        boolean estado = true;
+        int resultado;
+        SQLiteDatabase bd = this.getWritableDatabase();
+
+        try {
+
+            String descripcion = datos.getEt_descripcion();
+            String fecha = datos.getEt_fecha();
+            double monto = datos.getEt_monto();
+
+            //String[] parametros = {String.valueOf(datos.getCodigo())};
+
+            ContentValues registro = new ContentValues();
+            registro.put("descripcion", descripcion);
+            registro.put("fecha", fecha);
+            registro.put("monto", monto);
+
+            // int cant = (int) this.getWritableDatabase().update("articulos", registro, "codigo=" + codigo, null);
+            int cant = (int) bd.update("gasto", registro, "descripcion=" + descripcion, null);
+            // bd.update("articulos",registro,"codigo=?",parametros);
+
+            bd.close();
+            if (cant > 0) estado = true;
+            else estado = false;
+
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+    }
+    public boolean eliminarporfecha(final Context context, final GastosDto datos) {
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        estadoDelete = true;
+        try {
+            String fecha = datos.getEt_fecha();
+            Cursor fila = bd().rawQuery("select * from gasto where fecha=" + fecha, null);
+            if (fila.moveToFirst()) {
+                datos.setEt_descripcion((fila.getString(0)));
+                datos.setEt_fecha(fila.getString(1));
+                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setIcon(R.drawable.ic_delete);
+                builder.setTitle("Warning");
+                builder.setMessage("¿Esta seguro de borrar el registro? \nfecha: " + datos.getEt_fecha() + "\nfecha: " + datos.getEt_fecha());
+                builder.setCancelable(false);
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
+                        String fecha = datos.getEt_fecha();
+                        int cant = bd().delete("gasto", "fecha=" + fecha, null);
+                        //bd().delete("articulos","codigo=?",parametros);
+
+                        if (cant > 0) {
+                            estadoDelete = true;
+                            Toast.makeText(context, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            estadoDelete = false;
+                        }
+                        bd().close();
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                Toast.makeText(context, "No hay resultados encontrados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            estadoDelete = false;
+            Log.e("Error.", e.toString());
+        }
+        return estadoDelete;
+    }
+*/
     //-----------------------------------------------------METODOS DE MONTO-----------------------------------------------------------------------------------------
 
     public boolean InsertMonto(MontoDto datos) {
@@ -296,9 +403,6 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return listaMonto;
     }
-    //Fin del Spinner.
-
-    // Inicio del Método para crear lista de datos de la BD en el ListView.
 
     public ArrayList<String> consultaListaMonto1(){
         boolean estado = false;
@@ -335,4 +439,92 @@ public class Conexion extends SQLiteOpenHelper {
         //return articulosList;
         return listaMonto;
     }
+    //Fin del Spinner.
+
+    // public void consultaListaArticulos(){
+    public ArrayList<GastosDto> consultaListaGasto() {
+        boolean estado = false;
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        SQLiteDatabase bd = this.getReadableDatabase();
+        GastosDto gasto = null;
+        //Creamos la instancia vacia.
+        gastoList = new ArrayList<GastosDto>();
+
+        try {
+            Cursor fila = bd.rawQuery("select * from gasto", null);
+
+            while (fila.moveToNext()) {
+
+                gasto = new GastosDto();
+                gasto.setIdgasto(fila.getInt(0));
+                gasto.setEt_fecha(fila.getString(1));
+                gasto.setEt_descripcion(fila.getString(2));
+                gasto.setEt_monto(fila.getDouble(3));
+
+                gastoList.add(gasto);
+
+                Log.i("id", String.valueOf(gasto.getIdgasto()));
+                Log.i("fecha", gasto.getEt_fecha().toString());
+                Log.i("descripción", gasto.getEt_descripcion().toString());
+                Log.i("monto", String.valueOf(gasto.getEt_monto()));
+            }
+            obtenerListagasto();
+
+        } catch (Exception e) {
+
+        }
+        return gastoList;
+    }
+
+    public ArrayList<String> obtenerListagasto() {
+        listaGasto = new ArrayList<String>();
+        listaGasto.add("seleccione");
+
+        for (int i = 0; i < gastoList.size(); i++) {
+            listaGasto.add(gastoList.get(i).getIdgasto() + " ~ " + gastoList.get(i).getEt_descripcion());
+
+        }
+        return listaGasto;
+    }
+    //Fin del Spinner.
+
+    // Inicio del Método para crear lista de datos de la BD en el ListView.
+
+    public ArrayList<String> consultaListagasto1(){
+        boolean estado = false;
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        SQLiteDatabase bd = this.getReadableDatabase();
+
+        GastosDto gasto = null;
+        //Creamos la instancia vacia.
+        gastoList = new ArrayList<GastosDto>();
+
+        try{
+            Cursor fila = bd.rawQuery("select * from gasto",null);
+            while (fila.moveToNext()){
+                gasto = new GastosDto();
+                gasto.setIdgasto(fila.getInt(0));
+                gasto.setEt_descripcion(fila.getString(1));
+                gasto.setEt_fecha(fila.getString(2));
+                gasto.setEt_monto(fila.getDouble(3));
+
+                gastoList.add(gasto);
+            }
+            listaGasto = new ArrayList<String>();
+            //listaArticulos = new ArrayList<>();
+            // listaArticulos.add("Seleccione");
+
+            for(int i=0;i<=gastoList.size();i++){
+                // listaArticulos.add(String.valueOf(articulosList.get(i).getCodigo()));
+                listaGasto.add(gastoList.get(i).getIdgasto()+" ~ "+gastoList.get(i).getEt_descripcion());
+            }
+            //bd().close();
+            // return listaArticulos;
+        }catch (Exception e){
+
+        }
+        //return articulosList;
+        return listaGasto;
+    }
+
 }
