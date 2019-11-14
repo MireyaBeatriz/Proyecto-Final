@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/ic_add"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="60dp"/>
+        android:layout_marginLeft="60dp" />
 
         <Button
             android:id="@+id/btn_eliminar"
@@ -89,7 +89,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_delete"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="40dp"/>
+            android:layout_marginLeft="40dp"
+            android:onClick="eliminarporfecha"/>
 
     </LinearLayout>
     <LinearLayout
@@ -103,7 +104,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_edit"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="90dp"/>
+            android:layout_marginLeft="90dp"
+        android:onClick="modificacion"/>
 
         <Button
             android:id="@+id/btn_buscar"
@@ -112,7 +114,7 @@
             android:background="@drawable/ic_search"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="40dp"
-            android:onClick="Bucar_por_descripcion"/>
+            android:onClick="consultapordescripcion"/>
 
     </LinearLayout>
 

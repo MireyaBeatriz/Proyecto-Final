@@ -49,12 +49,12 @@ public class Gastos extends AppCompatActivity {
         });
     }
 
-    public void Nuevo(View view) {
+    public void limpiarDatos() {
         et_descripcion.setText(null);
         et_fecha.setText(null);
         et_monto.setText(null);
+        et_descripcion.requestFocus();
     }
-
     public void Guardar(View view) {
         if (et_descripcion.getText().toString().length() == 0) {
             estadodescripcion = false;
@@ -85,17 +85,81 @@ public class Gastos extends AppCompatActivity {
                 //if(conexion.insertardatos(datos)){ //if(conexion.InsertRegister(datos)){
                 if (conexion.InsertarGastos(datos)) {
                     Toast.makeText(this, "Registro agregado satisfactoriamente!", Toast.LENGTH_SHORT).show();
-                    Nuevo(view);
+                    limpiarDatos();
                 } else {
                     Toast.makeText(getApplicationContext(), "Error. Ya existe un registro\n" + " Fecha: " + et_fecha.getText().toString(), Toast.LENGTH_LONG).show();
-                    Nuevo(view);
+                    limpiarDatos();
                 }
             } catch (Exception e) {
                 Toast.makeText(this, "ERROR. Ya existe.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    public void consultapordescripcion(View v) {
+            if (et_descripcion.getText().toString().length() == 0) {
+                et_descripcion.setError("Campo obligatorio");
+                estadodescripcion = false;
+            } else {
+                estadodescripcion = true;
+            }
+            if (estadodescripcion) {
+                String descripcion = et_descripcion.getText().toString();
+                datos.setEt_descripcion(descripcion);
+                if (conexion.consultarDescripcion(datos)) {
+                    et_descripcion.setText("" + datos.getEt_descripcion());
+                    et_fecha.setText(datos.getEt_fecha());
+                    et_monto.setText("" + datos.getEt_monto());
+                    //Toast.makeText(this, "Se encontro uno", Toast.LENGTH_SHORT).show();
 
-
+                }else{ Toast.makeText(this, "No existe un gasto con dicha descripción", Toast.LENGTH_SHORT).show();
+                    limpiarDatos();
+                }
+            } else {
+                Toast.makeText(this, "Ingrese la descripción del gasto a buscar.", Toast.LENGTH_SHORT).show();
             }
         }
+    public void modificacion(View v) {
+        if(et_descripcion.getText().toString().length()==0){
+            et_descripcion.setError("campo obligatorio");
+            estadodescripcion = false;
+
+        }else { estadodescripcion=true;
+        }
+
+        if(estadodescripcion) {
+            String descripcion = et_descripcion.getText().toString();
+            String fecha = et_fecha.getText().toString();
+            double monto = Double.parseDouble(et_monto.getText().toString());
+            datos.setEt_descripcion((descripcion));
+            datos.setEt_fecha(descripcion);
+            datos.setEt_monto(monto);
+
+            if(conexion.modificar(datos)){
+                Toast.makeText(this, "Registro Modificado Correctamente.", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    public void eliminarporfecha(View v) {
+        if(et_fecha.getText().toString().length()==0){
+            et_fecha.setError("campo obligatorio");
+            estadofecha = false;
+
+        }else { estadofecha=true; }
+
+        if(estadofecha){
+            String cod = et_fecha.getText().toString();
+            datos.setEt_fecha((cod));
+            if(conexion.eliminarporfecha(Gastos.this,datos)){ //Toast.makeText(this, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                limpiarDatos();
+            }else{
+                Toast.makeText(this, "No existe un artículo con dicho código.", Toast.LENGTH_SHORT).show();
+                limpiarDatos();
+            }
+        }
+    }
+
+}
+
 

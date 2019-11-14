@@ -1,16 +1,22 @@
 package com.example.proyectofinal;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Conexion extends SQLiteOpenHelper {
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
+
+    boolean estadoDelete;
 
     public Conexion(Context context) {
 
@@ -90,6 +96,107 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return estado;
 
+    }
+    public boolean consultarDescripcion(GastosDto datos) {
+        boolean estado = true;
+        int resultado;
+        SQLiteDatabase bd = this.getWritableDatabase();
+        try {
+            String descripcion = datos.getEt_descripcion();
+            Cursor fila = bd.rawQuery("select descripcion, fecha, monto from gasto where descripcion='" + descripcion + "'", null);
+            if (fila.moveToFirst()) {
+                datos.setEt_descripcion((fila.getString(0)));
+                datos.setEt_fecha(fila.getString(1));
+                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
+                estado = true;
+            } else {
+                estado = false;
+            }
+            bd.close();
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+    }
+    public boolean modificar(GastosDto datos) {
+        boolean estado = true;
+        int resultado;
+        SQLiteDatabase bd = this.getWritableDatabase();
+
+        try {
+
+            String descripcion = datos.getEt_descripcion();
+            String fecha = datos.getEt_fecha();
+            double monto = datos.getEt_monto();
+
+            //String[] parametros = {String.valueOf(datos.getCodigo())};
+
+            ContentValues registro = new ContentValues();
+            registro.put("descripcion", descripcion);
+            registro.put("fecha", fecha);
+            registro.put("monto", monto);
+
+            // int cant = (int) this.getWritableDatabase().update("articulos", registro, "codigo=" + codigo, null);
+            int cant = (int) bd.update("gasto", registro, "descripcion=" + descripcion, null);
+            // bd.update("articulos",registro,"codigo=?",parametros);
+
+            bd.close();
+            if (cant > 0) estado = true;
+            else estado = false;
+
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+    }
+    public boolean eliminarporfecha(final Context context, final GastosDto datos) {
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        estadoDelete = true;
+        try {
+            String fecha = datos.getEt_fecha();
+            Cursor fila = bd().rawQuery("select * from gasto where fecha=" + fecha, null);
+            if (fila.moveToFirst()) {
+                datos.setEt_descripcion((fila.getString(0)));
+                datos.setEt_fecha(fila.getString(1));
+                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setIcon(R.drawable.ic_delete);
+                builder.setTitle("Warning");
+                builder.setMessage("¿Esta seguro de borrar el registro? \nfecha: " + datos.getEt_fecha() + "\nfecha: " + datos.getEt_fecha());
+                builder.setCancelable(false);
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
+                        String fecha = datos.getEt_fecha();
+                        int cant = bd().delete("gasto", "fecha=" + fecha, null);
+                        //bd().delete("articulos","codigo=?",parametros);
+
+                        if (cant > 0) {
+                            estadoDelete = true;
+                            Toast.makeText(context, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            estadoDelete = false;
+                        }
+                        bd().close();
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                Toast.makeText(context, "No hay resultados encontrados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            estadoDelete = false;
+            Log.e("Error.", e.toString());
+        }
+        return estadoDelete;
     }
 
 
