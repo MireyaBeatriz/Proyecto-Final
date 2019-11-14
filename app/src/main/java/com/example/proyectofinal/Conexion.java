@@ -25,7 +25,7 @@ public class Conexion extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table usuario(idusuario  INTEGER PRIMARY KEY AUTOINCREMENT, nombre text, password text)");
         sqLiteDatabase.execSQL("create table monto(idmonto  INTEGER PRIMARY KEY AUTOINCREMENT, ingreso real, fecha date)");
-        sqLiteDatabase.execSQL("create table gasto(idgasto  INTEGER PRIMARY KEY AUTOINCREMENT, descripcion text, cantidad real, fecha date )");
+        sqLiteDatabase.execSQL("create table gasto(idgasto  INTEGER PRIMARY KEY AUTOINCREMENT, descripcion text, monto real, fecha date )");
        // sqLiteDatabase.execSQL("create table totalmonto(idtotalmonto  INTEGER PRIMARY KEY AUTOINCREMENT, detalle text,  idgasto, idmonto INTEGER, constraint ((fk_gasto)(fk_monto)) foreign key(idgasto) references gasto(idgasto), idmonto INTEGER, constraint fk_monto foreign key(idmonto) references monto(idmonto))");
         sqLiteDatabase.execSQL("create table totalmonto(id_totalmonto  INTEGER PRIMARY KEY AUTOINCREMENT, detalle text, idmonto INTEGER, idgasto INTEGER, constraint fk_monto foreign key(idmonto) references monto(idmonto), constraint fk_gasto foreign key(idgasto) references gasto(idgasto))");
 
@@ -65,32 +65,32 @@ public class Conexion extends SQLiteOpenHelper {
         return estado;
 
     }
-    public boolean InsertarGastos(GastosDto datos) {
-        boolean estado = true;
-        try {
-            int idgasto = datos.getIdgasto();
-            String descripcion = datos.getEt_descripcion();
-            String fecha = datos.getEt_fecha();
-            double cantidad = datos.getEt_monto();
 
-            Cursor fila = bd().rawQuery("select idgasto from gasto where idgasto='" + idgasto + "'", null);
-            if (fila.moveToFirst() == true) {
-                estado = false;
-            } else {
-                String SQL = "INSERT INTO gasto \n" +
-                        "(idgasto, descripcion, fecha, cantidad)\n" +
-                        "VALUES \n" +
-                        "('" + String.valueOf(idgasto) + "', '" + descripcion + "','" + fecha + "', '" + String.valueOf(cantidad) + "');";
-                bd().execSQL(SQL);
-                bd().close();
+    public boolean consultaFechaGasto(GastosDto datos) {
+        boolean estado = true;
+        int resultado;
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        SQLiteDatabase bd = this.getReadableDatabase();
+        try {
+            String[] parametros = {String.valueOf(datos.getEt_fecha())};
+            String[] campos = {"descripcion", "fecha", "monto"};
+            Cursor fila = bd.query("gasto", campos, "fecha=?", parametros, null, null, null);
+            // fila.moveToFirst();
+            if (fila.moveToFirst()) {
+                datos.setEt_descripcion(fila.getString(0));
+                datos.setEt_fecha(fila.getString(1));
+                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
                 estado = true;
+            } else {
+                estado = false;
             }
+            fila.close();
+            bd.close();
         } catch (Exception e) {
-            estado = true;
+            estado = false;
             Log.e("error.", e.toString());
         }
         return estado;
-
     }
 
 

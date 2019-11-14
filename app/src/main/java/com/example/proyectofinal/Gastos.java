@@ -49,50 +49,62 @@ public class Gastos extends AppCompatActivity {
         });
     }
 
-    public void limpiarDatos() {
-        et_descripcion.setText(null);
-        et_fecha.setText(null);
-        et_monto.setText(null);
-        et_descripcion.requestFocus();
+    public void Nuevo(View view) {
+        et_descripcion.setText("");
+        et_fecha.setText("");
+        et_monto.requestFocus();
+
+        Toast.makeText(this, "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
     }
-    public void Guardar(View view) {
-        if (et_descripcion.getText().toString().length() == 0) {
-            estadodescripcion = false;
-            et_descripcion.setError("Campo obligatorio");
-        } else {
-            estadodescripcion = true;
-        }
+    public void Guardar (View view) {
+
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+        String idgasto = null;
+        String descripcion = et_descripcion.getText().toString();
+        String fecha = et_fecha.getText().toString();
+        String monto = et_monto.getText().toString();
+
+        ContentValues registro = new ContentValues();
+        registro.put("idgasto", idgasto);
+        registro.put("descripcion", descripcion);
+        registro.put("fecha", fecha);
+        registro.put("monto", monto);
+
+
+        bd.insert("gasto", null, registro);
+        bd.close();
+
+        et_descripcion.setText("");
+        et_fecha.setText("");
+        et_descripcion.requestFocus();
+        Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show();
+
+    }
+    public void ConsultarFecha(View v) {
 
         if (et_fecha.getText().toString().length() == 0) {
-            estadofecha = false;
             et_fecha.setError("Campo obligatorio");
+            estadofecha = false;
         } else {
             estadofecha = true;
         }
-        if (et_monto.getText().toString().length() == 0) {
-            estadomonto = false;
-            et_monto.setError("Campo obligatorio");
-        } else {
-            estadomonto = true;
-        }
 
-        if (estadodescripcion && estadofecha && estadomonto) {
-            try {
-                // datos.setIdmonto(Integer.parseInt(edtFecha.Null);
-                datos.setEt_descripcion(et_descripcion.getText().toString());
-                datos.setEt_fecha(et_fecha.getText().toString());
-                datos.setEt_monto(Double.parseDouble(et_monto.getText().toString()));
-                //if(conexion.insertardatos(datos)){ //if(conexion.InsertRegister(datos)){
-                if (conexion.InsertarGastos(datos)) {
-                    Toast.makeText(this, "Registro agregado satisfactoriamente!", Toast.LENGTH_SHORT).show();
-                    limpiarDatos();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Error. Ya existe un registro\n" + " Fecha: " + et_fecha.getText().toString(), Toast.LENGTH_LONG).show();
-                    limpiarDatos();
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "ERROR. Ya existe.", Toast.LENGTH_SHORT).show();
+        if (estadofecha) {
+            String fecha = et_fecha.getText().toString();
+            datos.setEt_fecha(fecha);
+
+            if (conexion.consultaFechaGasto(datos)) {
+                et_descripcion.setText("" + datos.getEt_descripcion());
+                et_fecha.setText(datos.getEt_fecha());
+                et_monto.setText("" + datos.getEt_monto());
+                //Toast.makeText(this, "Se encontro uno", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "No existe fecha con ese dato", Toast.LENGTH_SHORT).show();
+
             }
+        } else {
+            Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
    /* public void consultapordescripcion(View v) {
