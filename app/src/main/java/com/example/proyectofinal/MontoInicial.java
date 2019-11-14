@@ -56,39 +56,29 @@ public class MontoInicial extends AppCompatActivity {
         //Toast.makeText(getContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
     }
 
-    public void Guardar(View view) {
-        if (edtFecha.getText().toString().length() == 0) {
-            estadoFecha = false;
-            edtFecha.setError("Campo obligatorio");
-        } else {
-            estadoFecha = true;
-        }
+    public void Guardar (View view) {
 
-        if (edtIngreso.getText().toString().length() == 0) {
-            estadoIngreso = false;
-            edtIngreso.setError("Campo obligatorio");
-        } else {
-            estadoIngreso = true;
-        }
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+        String idmonto = null;
+        String fecha = edtFecha.getText().toString();
+        String ingreso = edtIngreso.getText().toString();
 
-        if (estadoFecha && estadoIngreso) {
-            try {
-                // datos.setIdmonto(Integer.parseInt(edtFecha.Null);
-                datos.setFecha(edtFecha.getText().toString());
-                datos.setIngreso(Double.parseDouble(edtIngreso.getText().toString()));
-                //if(conexion.insertardatos(datos)){ //if(conexion.InsertRegister(datos)){
-                if (conexion.InsertMonto(datos)) {
-                    Toast.makeText(this, "Registro agregado satisfactoriamente!", Toast.LENGTH_SHORT).show();
-                    Nuevo();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Error. Ya existe un registro\n" + " Fecha: " + edtFecha.getText().toString(), Toast.LENGTH_LONG).show();
-                    Nuevo();
-                }
-            } catch (Exception e) {
-                Toast.makeText(this, "ERROR. Ya existe.", Toast.LENGTH_SHORT).show();
-            }
-        }
+        ContentValues registro = new ContentValues();
+        registro.put("idmonto", idmonto);
+        registro.put("fecha", fecha);
+        registro.put("ingreso", ingreso);
+
+
+        bd.insert("monto", null, registro);
+        bd.close();
+
+        edtFecha.setText("");
+        edtIngreso.setText("");
+        edtFecha.requestFocus();
+        Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show();
+
     }
+
 
     public void ConsultarFecha(View v) {
 
@@ -98,45 +88,46 @@ public class MontoInicial extends AppCompatActivity {
         } else {
             estadoFecha = true;
         }
+
         if (estadoFecha) {
             String fecha = edtFecha.getText().toString();
-            double ingreso = Double.parseDouble(edtIngreso.getText().toString());
             datos.setFecha(fecha);
-            datos.setIngreso(ingreso);
 
             if (conexion.consultaFecha1(datos)) {
-                edtFecha.setText("" + datos.getFecha());
+                edtFecha.setText(datos.getFecha());
                 edtIngreso.setText("" + datos.getIngreso());
+                //Toast.makeText(this, "Se encontro uno", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "No existe registro con dicha fecha", Toast.LENGTH_SHORT).show();
-                Nuevo();
+                Toast.makeText(this, "No existe fecha con ese dato", Toast.LENGTH_SHORT).show();
+
             }
         } else {
-            Toast.makeText(this, "Ingrese fecha del ingreso a buscar.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void ConsultarIngreso(View v) {
-        if (edtFecha.getText().toString().length() == 0) {
-            edtFecha.setError("Campo obligatorio");
-            estadoFecha = false;
+        if (edtIngreso.getText().toString().length() == 0) {
+            edtIngreso.setError("Campo obligatorio");
+            estadoIngreso = false;
         } else {
-            estadoFecha = true;
+            estadoIngreso = true;
         }
-        if (estadoFecha) {
-            String fecha = edtFecha.getText().toString();
-            double ingreso = Double.parseDouble(edtIngreso.getText().toString());
-            datos.setFecha(fecha);
-            datos.setIngreso(ingreso);
+
+        if (estadoIngreso) {
+            String ingreso = edtIngreso.getText().toString();
+            datos.setIngreso(Double.parseDouble(ingreso));
+
             if (conexion.consultarIngreso1(datos)) {
                 edtFecha.setText(datos.getFecha());
                 edtIngreso.setText("" + datos.getIngreso());
+                //Toast.makeText(this, "Se encontro uno", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "No existe ingreso con ese dato", Toast.LENGTH_SHORT).show();
 
-            }else{ Toast.makeText(this, "No existe registro con dicha cantidad de $: ", Toast.LENGTH_SHORT).show();
-                Nuevo();
             }
         } else {
-            Toast.makeText(this, "Ingrese el monto del articulo a buscar.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingrese monto a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
 

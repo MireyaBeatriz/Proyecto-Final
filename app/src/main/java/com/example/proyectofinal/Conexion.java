@@ -41,34 +41,6 @@ public class Conexion extends SQLiteOpenHelper {
         SQLiteDatabase bd = this.getWritableDatabase();
         return bd;
     }
-    public boolean InsertMonto(MontoDto datos) {
-        boolean estado = true;
-        try {
-            int idmonto = datos.getIdmonto();
-            String fecha = datos.getFecha();
-            double cantidad = datos.getIngreso();
-
-            Cursor fila = bd().rawQuery("select idmonto from monto where idmonto='" + idmonto + "'", null);
-            if (fila.moveToFirst() == true) {
-                estado = false;
-            } else {
-                String SQL = "INSERT INTO monto \n" +
-                        "(idmonto, fecha, cantidad)\n" +
-                        "VALUES \n" +
-                        "('" + String.valueOf(idmonto) + "', '" + fecha + "', '" + String.valueOf(cantidad) + "');";
-                bd().execSQL(SQL);
-                bd().close();
-                estado = true;
-            }
-        } catch (Exception e) {
-            estado = true;
-            Log.e("error.", e.toString());
-        }
-        return estado;
-
-    }
-
-
 
     public boolean InsertarGastos(GastosDto datos) {
         boolean estado = true;
@@ -199,17 +171,71 @@ public class Conexion extends SQLiteOpenHelper {
         return estadoDelete;
     }
 
+    //-----------------------------------------------------METODOS DE MONTO-----------------------------------------------------------------------------------------
+
+    public boolean InsertMonto(MontoDto datos) {
+        boolean estado = true;
+        try {
+            int idmonto = datos.getIdmonto();
+            String fecha = datos.getFecha();
+            double cantidad = datos.getIngreso();
+
+            Cursor fila = bd().rawQuery("select idmonto from monto where idmonto='" + idmonto + "'", null);
+            if (fila.moveToFirst() == true) {
+                estado = false;
+            } else {
+                String SQL = "INSERT INTO monto \n" +
+                        "(idmonto, fecha, cantidad)\n" +
+                        "VALUES \n" +
+                        "('" + String.valueOf(idmonto) + "', '" + fecha + "', '" + String.valueOf(cantidad) + "');";
+                bd().execSQL(SQL);
+                bd().close();
+                estado = true;
+            }
+        } catch (Exception e) {
+            estado = true;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+
+    }
 
     public boolean consultaFecha1(MontoDto datos) {
+    boolean estado = true;
+    int resultado;
+    //SQLiteDatabase bd = this.getWritableDatabase();
+    SQLiteDatabase bd = this.getReadableDatabase();
+    try {
+        String[] parametros = {String.valueOf(datos.getFecha())};
+        String[] campos = {"fecha", "ingreso"};
+        Cursor fila = bd.query("monto", campos, "fecha=?", parametros, null, null, null);
+        // fila.moveToFirst();
+        if (fila.moveToFirst()) {
+            datos.setFecha(fila.getString(0));
+            datos.setIngreso(Double.parseDouble(fila.getString(1)));
+            estado = true;
+        } else {
+            estado = false;
+        }
+        fila.close();
+        bd.close();
+    } catch (Exception e) {
+        estado = false;
+        Log.e("error.", e.toString());
+    }
+    return estado;
+}
+
+    public boolean consultarIngreso1(MontoDto datos) {
         boolean estado = true;
         int resultado;
-        SQLiteDatabase bd = this.getWritableDatabase();
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        SQLiteDatabase bd = this.getReadableDatabase();
         try {
-            String fecha = datos.getFecha();
-            double ingreso = datos.getIngreso();
-            //Cursor fila = bd.rawQuery("select descripcion, precio from articulos where codigo='" + codigo + "'", null);
-            // Cursor fila = bd.rawQuery("select descripcion, precio from articulos where codigo=" + codigo, null);
-            Cursor fila = bd.rawQuery("select fecha, ingreso from monto where fecha=" + fecha, null);
+            String[] parametros = {String.valueOf(datos.getIngreso())};
+            String[] campos = {"fecha", "ingreso"};
+            Cursor fila = bd.query("monto", campos, "ingreso=?", parametros, null, null, null);
+            // fila.moveToFirst();
             if (fila.moveToFirst()) {
                 datos.setFecha(fila.getString(0));
                 datos.setIngreso(Double.parseDouble(fila.getString(1)));
@@ -217,29 +243,7 @@ public class Conexion extends SQLiteOpenHelper {
             } else {
                 estado = false;
             }
-            bd.close();
-        } catch (Exception e) {
-            estado = false;
-            Log.e("error.", e.toString());
-        }
-        return estado;
-    }
-    public boolean consultarIngreso1(MontoDto datos) {
-        boolean estado = true;
-        int resultado;
-        SQLiteDatabase bd = this.getWritableDatabase();
-        try {
-            double ingreso = datos.getIngreso();
-            String fecha = datos.getFecha();
-            Cursor fila = bd.rawQuery("select fecha, ingreso from monto where ingreso='" + ingreso + "'", null);
-            if (fila.moveToFirst()) {
-                datos.setIngreso(Double.parseDouble(fila.getString(0)));
-                datos.setFecha(fila.getString(1));
-
-                estado = true;
-            } else {
-                estado = false;
-            }
+            fila.close();
             bd.close();
         } catch (Exception e) {
             estado = false;
@@ -248,6 +252,8 @@ public class Conexion extends SQLiteOpenHelper {
         return estado;
     }
 
+
+    //-------------------------------------------------------------------METODOS DE LAS CONSULTAS---------------------------------------------------------------------------
     public ArrayList<MontoDto> consultaListaMonto() {
         boolean estado = false;
         //SQLiteDatabase bd = this.getWritableDatabase();
