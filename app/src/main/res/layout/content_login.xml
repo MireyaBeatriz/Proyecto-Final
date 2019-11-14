@@ -120,7 +120,6 @@
                             android:drawablePadding="5dp"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"
-                            android:textColor="#000"
                             android:textSize="15sp"
                             android:hint="Password"
                             android:textStyle="italic"
