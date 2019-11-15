@@ -77,6 +77,7 @@ public class Gastos extends AppCompatActivity {
 
         et_descripcion.setText("");
         et_fecha.setText("");
+        et_monto.setText("");
         et_descripcion.requestFocus();
         Toast.makeText(this, "Registro guardado", Toast.LENGTH_SHORT).show();
 
@@ -134,6 +135,7 @@ public class Gastos extends AppCompatActivity {
         }
     }
 
+
    /* public void eliminarporfecha(View v) {
         if(et_fecha.getText().toString().length()==0){
             et_fecha.setError("campo obligatorio");
@@ -158,3 +160,4 @@ public class Gastos extends AppCompatActivity {
 
 
 }
+
