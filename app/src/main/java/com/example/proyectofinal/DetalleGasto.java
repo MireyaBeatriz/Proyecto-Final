@@ -68,21 +68,45 @@ public class DetalleGasto  extends AppCompatActivity {
 
     public void eliminarporid(View v) {
         GastosDto datos = new GastosDto();
-        if(tv_id.getText().toString().length()==0){
+        if (tv_id.getText().toString().length() == 0) {
             tv_id.setError("campo obligatorio");
             estadoid = false;
 
-        }else { estadoid=true; }
+        } else {
+            estadoid = true;
+        }
 
-        if(estadoid){
+        if (estadoid) {
             String id = tv_id.getText().toString();
             datos.setIdgasto(Integer.parseInt(id));
-            if(conexion.ElimiarGasto(DetalleGasto.this,datos)){ //Toast.makeText(this, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+            if (conexion.ElimiarGasto(DetalleGasto.this, datos)) { //Toast.makeText(this, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
                 //limpiarDatos();
-            }else{
+            } else {
                 Toast.makeText(this, "No existe un artículo con dicho código.", Toast.LENGTH_SHORT).show();
                 //limpiarDatos();
             }
         }
+    }
+        public void modificarporid(View v) {
+        GastosDto datos = new GastosDto();
+            if(tv_id.getText().toString().length()==0){
+                tv_id.setError("campo obligatorio");
+                estadoid = false;
+
+            }else { estadoid=true;
+            }
+
+            if(estadoid) {
+                String id = tv_id.getText().toString();
+                datos.setIdgasto(Integer.parseInt(id));
+
+
+                if(conexion.modificarporid(datos)){
+                    Toast.makeText(this, "Registro Modificado Correctamente.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
 }
-}
+
