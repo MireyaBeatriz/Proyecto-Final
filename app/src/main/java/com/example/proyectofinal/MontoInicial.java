@@ -1,6 +1,7 @@
 package com.example.proyectofinal;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -131,6 +132,65 @@ public class MontoInicial extends AppCompatActivity {
             Toast.makeText(this, "Ingrese monto a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void eliminarporcodigo(View v) {
+
+        MontoDto datos = new MontoDto();
+        if (edtIngreso.getText().toString().length() == 0) {
+            edtIngreso.setError("campo obligatorio");
+            estadoIngreso = false;
+
+        } else {
+            estadoIngreso = true;
+        }
+
+        if (estadoIngreso) {
+            String id = edtIngreso.getText().toString();
+            datos.setIdmonto(Integer.parseInt(id));
+            if (conexion.EliminarMonto(MontoInicial.this, datos)) { //Toast.makeText(this, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MontoInicial.this, ListaMonto.class);
+                startActivity(i);
+                //limpiarDatos();
+            } else {
+                Toast.makeText(this, "No existe un artículo con dicho código.", Toast.LENGTH_SHORT).show();
+                //limpiarDatos();
+            }
+        }
+
+    /*public void DespuesEliminar() {
+        Intent i = new Intent(MontoInicial.this,ListaMonto.class);
+        startActivity(i);
+    }*/
+    }
+
+    public void modificacion(View v) {
+
+        if(edtFecha.getText().toString().length()==0){
+            edtFecha.setError("campo obligatorio");
+            estadoFecha = false;
+        }else { estadoFecha=true;
+        }
+
+        if(estadoFecha) {
+            SQLiteDatabase bd = conexion.getWritableDatabase();
+            String idmonto =  null;
+            String fecha = edtFecha.getText().toString();
+            String ingreso = edtIngreso.getText().toString();
+
+            ContentValues registro = new ContentValues();
+            registro.put("idmonto", idmonto);
+            registro.put("fecha", fecha);
+            registro.put("ingreso", ingreso);
+
+            bd.update("monto", registro, "idmonto="+idmonto, null);
+            bd.close();
+
+            edtFecha.requestFocus();
+            Toast.makeText(this, "Monto modificado", Toast.LENGTH_SHORT).show();
+            Nuevo(v);
+        }
+    }
+
 
 
 }

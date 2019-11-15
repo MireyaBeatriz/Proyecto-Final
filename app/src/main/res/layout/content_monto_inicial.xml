@@ -114,7 +114,18 @@
                 android:layout_marginBottom="10dp"
                 android:background="#2341EC"
                 android:onClick="ConsultarIngreso"
-                android:text="Eliminar"
+                android:text="Consultar Ingreso"
+                android:textColor="#ffff" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="80dp"
+                android:layout_marginBottom="10dp"
+                android:background="#2341EC"
+                android:onClick="modificacion"
+                android:text="Modificar"
                 android:textColor="#ffff" />
 
             <LinearLayout

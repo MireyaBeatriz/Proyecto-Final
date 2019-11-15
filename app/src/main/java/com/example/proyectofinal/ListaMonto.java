@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.SurfaceControl;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +17,8 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -81,6 +84,7 @@ public class ListaMonto extends AppCompatActivity {
                             + conexion.consultaListaMonto().get(pos).getFecha() + "\n";
                     informacion += "Ingreso: "
                             + conexion.consultaListaMonto().get(pos).getIngreso();
+
                     MontoDto monto = conexion.consultaListaMonto().get(pos);
 
 
@@ -93,62 +97,26 @@ public class ListaMonto extends AppCompatActivity {
                 }
             });
 
-            //al dar click largo
-           /*listViewMonto.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-               @Override
+            //al dar click normal
+            listViewMonto.setOnItemLongClickListener(new  AdapterView.OnItemLongClickListener() {
+                @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
 
-                   final SQLiteDatabase bd = conexion.getWritableDatabase();
-                //SQLiteDatabase bd = conexion.getWritableDatabase();
-                estadoDelete = true;
-                try {
-                    int idmonto = datos.getIdmonto();
-                    Cursor fila = bd.rawQuery("select * from monto where idmonto=" + idmonto, null);
-                    if (fila.moveToFirst()) {
-                        datos.setIdmonto(Integer.parseInt(fila.getString(0)));
-                        datos.setFecha(fila.getString(1));
-                        datos.setIngreso(Double.parseDouble(fila.getString(2)));
+                    MontoDto monto = conexion.consultaListaMonto().get(pos);
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(ListaMonto.this);
+                    Intent i = new Intent(ListaMonto.this, EditarMonto.class);
+                    startActivity(i);
 
-                        builder.setIcon(R.drawable.ic_delete);
-                        builder.setTitle("Warning");
-                        builder.setMessage("¿Esta seguro de borrar el registro? \nFecha: " + datos.getFecha() + "\nIngreso: " + datos.getIngreso());
-                        builder.setCancelable(false);
-                        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
-                                int idmonto = datos.getIdmonto();
-                                int cant = bd.delete("monto", "idmonto=" + idmonto, null);
-                                //bd().delete("articulos","codigo=?",parametros);
+                    //crear el bundle
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("monto", monto);
+                    i.putExtras(bundle);
+                    startActivity(i);
 
-                                if (cant > 0) {
-                                    estadoDelete = true;
-                                    Toast.makeText(ListaMonto.this, "Registro eliminado satisfactoriamente", Toast.LENGTH_SHORT).show();
-
-                                } else {
-                                    estadoDelete = false;
-                                }
-                                bd.close();
-                            }
-                        });
-                        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            }
-                        });
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                    } else {
-                        Toast.makeText(ListaMonto.this, "No hay resultados encontrados para la búsqueda especificada", Toast.LENGTH_SHORT).show();
-                       }
-                } catch (Exception e) {
-                    estadoDelete = false;
-                    Log.e("Error.", e.toString());
+                    return true;
                 }
-                return estadoDelete;
-            }
-           });*/
+            });
+
         }
 
     }
