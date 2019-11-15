@@ -1,14 +1,19 @@
 package com.example.proyectofinal;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Conexion extends SQLiteOpenHelper {
+    boolean estadoDelete;
+
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
 
@@ -170,6 +175,54 @@ public class Conexion extends SQLiteOpenHelper {
             Log.e("error.", e.toString());
         }
         return estado;
+    }
+
+    public boolean ElimiarMonto(final Context context, final MontoDto datos) {
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        estadoDelete = true;
+        try {
+            int idmonto = datos.getIdmonto();
+            Cursor fila = bd().rawQuery("select * from monto where idmonto=" + idmonto, null);
+            if (fila.moveToFirst()) {
+                datos.setFecha(fila.getString(0));
+                datos.setIngreso(Double.parseDouble(fila.getString(1)));
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setIcon(R.drawable.ic_delete);
+                builder.setTitle("Warning");
+                builder.setMessage("¿Esta seguro de borrar el registro? \nFecha: " + datos.getFecha() + "\nIngreso: " + datos.getIngreso());
+                builder.setCancelable(false);
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
+                        int idmonto = datos.getIdmonto();
+                        int cant = bd().delete("monto", "idmonto=" + idmonto, null);
+                        //bd().delete("articulos","codigo=?",parametros);
+
+                        if (cant > 0) {
+                            estadoDelete = true;
+                            Toast.makeText(context, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            estadoDelete = false;
+                        }
+                        bd().close();
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                Toast.makeText(context, "No hay resultados encontrados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            estadoDelete = false;
+            Log.e("Error.", e.toString());
+        }
+        return estadoDelete;
     }
 
     public ArrayList<MontoDto> consultaListaMonto() {
