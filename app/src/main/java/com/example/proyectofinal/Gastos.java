@@ -136,6 +136,7 @@ public class Gastos extends AppCompatActivity {
             Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
+<<<<<<< HEAD
     public void modificarporid(View v) {
         GastosDto datos = new GastosDto();
         if(et_descripcion.getText().toString().length()==0){
@@ -162,6 +163,8 @@ public class Gastos extends AppCompatActivity {
 
 
 
+=======
+>>>>>>> cae903f4082fdc1fd0891e0661dc00f2cd9f98c0
 
 }
 
