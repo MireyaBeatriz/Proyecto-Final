@@ -12,12 +12,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Conexion extends SQLiteOpenHelper {
-<<<<<<< HEAD
 
-
-=======
     boolean estadoDelete;
->>>>>>> c5a47461ad064fd8616c4b1fafeb9fb55f4a0371
+
 
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
@@ -202,6 +199,55 @@ public class Conexion extends SQLiteOpenHelper {
                     public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
                         int idmonto = datos.getIdmonto();
                         int cant = bd().delete("monto", "idmonto=" + idmonto, null);
+                        //bd().delete("articulos","codigo=?",parametros);
+
+                        if (cant > 0) {
+                            estadoDelete = true;
+                            Toast.makeText(context, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            estadoDelete = false;
+                        }
+                        bd().close();
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                Toast.makeText(context, "No hay resultados encontrados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            estadoDelete = false;
+            Log.e("Error.", e.toString());
+        }
+        return estadoDelete;
+    }
+
+    public boolean ElimiarGasto(final Context context, final GastosDto datos) {
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        estadoDelete = true;
+        try {
+            int idgasto = datos.getIdgasto();
+            Cursor fila = bd().rawQuery("select * from gasto where idgasto=" + idgasto, null);
+            if (fila.moveToFirst()) {
+                datos.setEt_descripcion(fila.getString(0));
+                datos.setEt_fecha(fila.getString(1));
+                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setIcon(R.drawable.ic_delete);
+                builder.setTitle("Warning");
+                builder.setMessage("¿Esta seguro de borrar el registro? \nDescripcion: " + datos.getEt_descripcion() + "\nFecha: " + datos.getEt_fecha() + "\nMonto: " + datos.getEt_monto());
+                builder.setCancelable(false);
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
+                        int idgasto = datos.getIdgasto();
+                        int cant = bd().delete("gasto", "idgasto=" + idgasto, null);
                         //bd().delete("articulos","codigo=?",parametros);
 
                         if (cant > 0) {
