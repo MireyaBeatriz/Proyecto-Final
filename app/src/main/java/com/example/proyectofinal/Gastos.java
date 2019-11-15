@@ -136,7 +136,10 @@ public class Gastos extends AppCompatActivity {
             Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
+
     /*public void modificarporid(View v) {
+
+    public void modificarporid(View v) {
         GastosDto datos = new GastosDto();
         if(et_descripcion.getText().toString().length()==0){
             et_descripcion.setError("campo obligatorio");
@@ -150,13 +153,13 @@ public class Gastos extends AppCompatActivity {
             datos.setIdgasto(Integer.parseInt(id));
 
 
-            if(conexion.modificarporid(datos)){
+            /*if(conexion.modificarporid(datos)){
                 Toast.makeText(this, "Registro Modificado Correctamente.", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
-            }
+            }*/
         }
-    }*/
 
-}
+
+
 

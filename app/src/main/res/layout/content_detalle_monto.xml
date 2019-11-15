@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".DetalleMonto"
     android:orientation="vertical"
-    android:background="#EED0D0"
+    android:background="#AF9393"
     tools:showIn="@layout/activity_detalle_monto">
 
 
@@ -80,6 +80,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"
+                            android:background="@drawable/rubi"
                             android:text="Eliminar"
                             android:onClick="eliminarporcodigo"/>
 
@@ -133,6 +134,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
+                        android:background="@drawable/rubi"
                         android:text="Modificar"
                         android:onClick="Editar"/>
 
