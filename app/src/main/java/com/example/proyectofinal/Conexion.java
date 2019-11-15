@@ -234,14 +234,15 @@ public class Conexion extends SQLiteOpenHelper {
             int idgasto = datos.getIdgasto();
             Cursor fila = bd().rawQuery("select * from gasto where idgasto=" + idgasto, null);
             if (fila.moveToFirst()) {
-                datos.setEt_descripcion(fila.getString(0));
-                datos.setEt_fecha(fila.getString(1));
+                datos.setEt_fecha(fila.getString(0));
+                datos.setEt_descripcion(fila.getString(1));
+
                 datos.setEt_monto(Double.parseDouble(fila.getString(2)));
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setIcon(R.drawable.ic_delete);
                 builder.setTitle("Warning");
-                builder.setMessage("¿Esta seguro de borrar el registro? \nDescripcion: " + datos.getEt_descripcion() + "\nFecha: " + datos.getEt_fecha() + "\nMonto: " + datos.getEt_monto());
+                builder.setMessage("¿Esta seguro de borrar el registro? \nDescripcion: " + datos.getEt_descripcion() + "\nId: " + datos.getIdgasto() + "\nMonto: " + datos.getEt_monto());
                 builder.setCancelable(false);
                 builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
                     @Override

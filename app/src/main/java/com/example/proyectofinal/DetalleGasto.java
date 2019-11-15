@@ -80,7 +80,7 @@ public class DetalleGasto  extends AppCompatActivity {
             if(conexion.ElimiarGasto(DetalleGasto.this,datos)){ //Toast.makeText(this, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
                 //limpiarDatos();
             }else{
-                Toast.makeText(this, "No existe un artículo con dicho código.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "No existe un gasto con dicho id.", Toast.LENGTH_SHORT).show();
                 //limpiarDatos();
             }
         }
