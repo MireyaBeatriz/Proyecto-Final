@@ -136,10 +136,6 @@ public class Gastos extends AppCompatActivity {
             Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> eb7e974af51144a74fed0d0a9d35b54e21116ec7
 
 }
 
