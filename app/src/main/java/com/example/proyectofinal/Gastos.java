@@ -52,7 +52,8 @@ public class Gastos extends AppCompatActivity {
     public void Nuevo(View view) {
         et_descripcion.setText("");
         et_fecha.setText("");
-        et_monto.requestFocus();
+        et_monto.setText("");
+        et_descripcion.requestFocus();
 
         Toast.makeText(this, "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
         //Toast.makeText(getContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();

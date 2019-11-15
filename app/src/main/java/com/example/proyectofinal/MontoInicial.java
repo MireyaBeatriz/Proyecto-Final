@@ -19,6 +19,7 @@ public class MontoInicial extends AppCompatActivity {
     boolean estadoFecha = false;
     boolean estadoIngreso = false;
 
+
     Conexion conexion = new Conexion(this);
     MontoDto datos = new MontoDto();
 
@@ -130,4 +131,6 @@ public class MontoInicial extends AppCompatActivity {
             Toast.makeText(this, "Ingrese monto a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

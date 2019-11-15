@@ -3,6 +3,7 @@ package com.example.proyectofinal;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,12 +16,9 @@ public class DetalleMonto extends AppCompatActivity {
     private TextView tv_id, tv_fecha, tv_ingreso;
     private TextView tv_id1, tv_fecha1, tv_ingreso1;
 
-
+    private boolean estadoid= false;
 
     Conexion conexion = new Conexion(this);
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +58,26 @@ public class DetalleMonto extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void eliminarporcodigo(View v) {
+        MontoDto datos = new MontoDto();
+        if(tv_id.getText().toString().length()==0){
+            tv_id.setError("campo obligatorio");
+            estadoid = false;
+
+        }else { estadoid=true; }
+
+        if(estadoid){
+            String id = tv_id.getText().toString();
+            datos.setIdmonto(Integer.parseInt(id));
+            if(conexion.ElimiarMonto(DetalleMonto.this,datos)){ //Toast.makeText(this, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                //limpiarDatos();
+            }else{
+                Toast.makeText(this, "No existe un artículo con dicho código.", Toast.LENGTH_SHORT).show();
+                //limpiarDatos();
+            }
+        }
     }
 
 
