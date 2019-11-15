@@ -278,40 +278,6 @@ public class Conexion extends SQLiteOpenHelper {
         return estadoDelete;
     }
 
-    public boolean modificarporid(GastosDto datos) {
-        boolean estado = true;
-        int resultado;
-        SQLiteDatabase bd = this.getWritableDatabase();
-
-        try {
-            int idgasto = datos.getIdgasto();
-
-            String descripcion = datos.getEt_descripcion();
-            String fecha = datos.getEt_fecha();
-            double monto = datos.getEt_monto();
-
-            //String[] parametros = {String.valueOf(datos.getCodigo())};
-
-            ContentValues registro = new ContentValues();
-            registro.put("idgasto", idgasto);
-            registro.put("descripcion", descripcion);
-            registro.put("fecha", fecha);
-            registro.put("monto", monto);
-
-            // int cant = (int) this.getWritableDatabase().update("articulos", registro, "codigo=" + codigo, null);
-            int cant = (int) bd.update("gasto", registro, "idgasto=" + idgasto, null);
-            // bd.update("articulos",registro,"codigo=?",parametros);
-
-            bd.close();
-            if (cant > 0) estado = true;
-            else estado = false;
-
-        } catch (Exception e) {
-            estado = false;
-            Log.e("error.", e.toString());
-        }
-        return estado;
-    }
 
 
     public ArrayList<MontoDto> consultaListaMonto() {

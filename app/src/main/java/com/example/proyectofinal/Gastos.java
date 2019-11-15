@@ -18,11 +18,12 @@ import android.widget.Toast;
 public class Gastos extends AppCompatActivity {
 
     private EditText et_descripcion, et_fecha, et_monto;
-    private Button btn_guardar, btn_nuevo, btn_eliminar, btn_modificar, btn_buscar;
+    private Button btn_guardar, btn_nuevo, btn_eliminar, btn_modificar, btn_buscar,btn_consultar;
 
     boolean estadodescripcion = false;
     boolean estadofecha = false;
     boolean estadomonto = false;
+    boolean estadoid = false;
 
 
     Conexion conexion = new Conexion(this);
@@ -135,25 +136,27 @@ public class Gastos extends AppCompatActivity {
             Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
+    public void modificarporid(View v) {
+        GastosDto datos = new GastosDto();
+        if(et_descripcion.getText().toString().length()==0){
+            et_descripcion.setError("campo obligatorio");
+            estadoid = false;
+
+        }else { estadoid=true;
+        }
+
+        if(estadoid) {
+            String id = et_descripcion.getText().toString();
+            datos.setIdgasto(Integer.parseInt(id));
 
 
-   /* public void eliminarporfecha(View v) {
-        if(et_fecha.getText().toString().length()==0){
-            et_fecha.setError("campo obligatorio");
-            estadofecha = false;
-
-        }else { estadofecha=true; }
-
-        if(estadofecha){
-            String cod = et_fecha.getText().toString();
-            datos.setEt_fecha((cod));
-            if(conexion.eliminarporfecha(Gastos.this,datos)){ //Toast.makeText(this, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
-                limpiarDatos();
+            if(conexion.modificarporid(datos)){
+                Toast.makeText(this, "Registro Modificado Correctamente.", Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(this, "No existe un artículo con dicho código.", Toast.LENGTH_SHORT).show();
-                limpiarDatos();
+                Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
             }
-        }*/
+        }
+    }
 
 
 
