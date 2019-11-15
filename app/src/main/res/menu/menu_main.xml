@@ -4,27 +4,34 @@
     tools:context="com.example.proyectofinal.MainActivity">
 
     <item
-        android:id="@+id/action_monto"
+        android:id="@+id/action_resultado"
+        android:icon="@drawable/ic_alert"
         android:orderInCategory="1"
+        android:title=""
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_monto"
+        android:orderInCategory="2"
         android:title="Monto"/>
 
     <item
         android:id="@+id/action_gastos"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="Gastos" />
 
     <item
         android:id="@+id/action_Lista"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="Lista" />
 
     <item
         android:id="@+id/action_mostrar_gastos"
-        android:orderInCategory="4"
+        android:orderInCategory="5"
         android:title="Mostrar Gastos" />
 
     <item
         android:id="@+id/action_Lista_gasto"
-        android:orderInCategory="5"
+        android:orderInCategory="6"
         android:title="Mostrar Lista Gasto" />
 </menu>
