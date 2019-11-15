@@ -150,9 +150,11 @@ public class Gastos extends AppCompatActivity {
                 Toast.makeText(this, "No existe un artículo con dicho código.", Toast.LENGTH_SHORT).show();
                 limpiarDatos();
             }
-        }
-    }*/
+        }*/
+
+
+
+
+
 
 }
-
-

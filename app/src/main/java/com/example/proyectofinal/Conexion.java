@@ -1,14 +1,20 @@
 package com.example.proyectofinal;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Conexion extends SQLiteOpenHelper {
+
+
+
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
 
@@ -340,4 +346,7 @@ public class Conexion extends SQLiteOpenHelper {
         //return articulosList;
         return listaGasto;
     }
+
+
 }
+
