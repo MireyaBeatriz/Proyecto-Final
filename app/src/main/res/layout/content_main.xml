@@ -18,8 +18,7 @@
         android:textAlignment="center"
         android:textColor="#0D0D0E"
         android:textSize="20dp"
-        android:textStyle="bold"
-        android:fontFamily="cursive"
+        android:layout_marginLeft="30dp"
         />
 
     <ScrollView
@@ -53,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="195dp"
-                    android:fontFamily="cursive"
+
                     android:text="SISTEMAS21B"
                     android:textAlignment="center"
                     android:textColor="#000"

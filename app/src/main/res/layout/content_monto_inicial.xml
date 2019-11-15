@@ -15,10 +15,10 @@
         android:layout_height="wrap_content"
         android:text="Detalle de presupuesto ingresado"
         android:textColor="#000"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
         android:textSize="30dp"
         android:textAlignment="center"
-        android:fontFamily="cursive"
+
         />
 
     <ScrollView
@@ -48,7 +48,6 @@
                 android:layout_marginRight="10dp"
                 android:hint="Ingrese fecha de ingreso"
                 android:paddingLeft="15dp"
-                android:fontFamily="cursive"
                 android:inputType="datetime"
                 android:textSize="25dp"
                 android:textColorHint="#000"
@@ -65,7 +64,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textColorHint="#000"
-                android:fontFamily="cursive"
                 android:inputType="date"
                 android:textSize="25dp"
                 android:paddingLeft="15dp"
@@ -77,7 +75,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/rubi"
-                android:textColor="#ffff"
+                android:textColor="#161616"
                 android:layout_marginRight="80dp"
                 android:text="Guardar"
                 android:onClick="Guardar"/>
@@ -88,7 +86,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/rubi"
-                android:textColor="#ffff"
+                android:textColor="#161616"
                 android:layout_marginRight="80dp"
                 android:text="Nuevo"
                 android:onClick="Nuevo"/>
@@ -100,7 +98,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/rubi"
-                android:textColor="#ffff"
+                android:textColor="#161616"
                 android:layout_marginRight="80dp"
                 android:text="Fecha"
                 android:onClick="ConsultarFecha"/>
@@ -115,7 +113,7 @@
                 android:background="@drawable/rubi"
                 android:onClick="ConsultarIngreso"
                 android:text="Consultar Ingreso"
-                android:textColor="#ffff" />
+                android:textColor="#161616" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,7 +124,7 @@
                 android:background="@drawable/rubi"
                 android:onClick="modificacion"
                 android:text="Modificar"
-                android:textColor="#ffff" />
+                android:textColor="#161616" />
 
             <LinearLayout
             android:layout_width="match_parent"

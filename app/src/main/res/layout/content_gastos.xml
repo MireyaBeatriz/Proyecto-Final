@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ingrese lo que se le pide a continuacion"
-        android:fontFamily="cursive"
+        android:layout_marginLeft="20dp"
         android:textSize="28dp"
         android:layout_marginTop="15dp"
         android:textColor="#000"/>
@@ -42,10 +42,8 @@
         android:hint=" Descripcion de el gasto a realizar "
         android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
-        android:layout_marginLeft="15dp"
-        android:fontFamily="cursive"
-        android:background="@drawable/estiloedittext"
-        android:textColor="#000"
+        android:layout_marginLeft="20dp"
+         android:textColor="#000"
         android:drawableStart="@drawable/ic_description"
         android:textSize="20dp"/>
 
@@ -56,11 +54,9 @@
         android:hint=" Fecha de realizacion "
         android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
-        android:layout_marginLeft="15dp"
-        android:fontFamily="cursive"
+        android:layout_marginLeft="20dp"
         android:textColor="#000"
         android:textSize="20dp"
-        android:background="@drawable/estiloedittext"
         android:inputType="date"
         android:drawableStart="@drawable/ic_date"/>
 
@@ -71,12 +67,10 @@
         android:hint=" Monto del gasto"
         android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
-        android:layout_marginLeft="15dp"
-        android:fontFamily="cursive"
+        android:layout_marginLeft="20dp"
         android:textColor="#000"
         android:textSize="20dp"
         android:inputType="date"
-        android:background="@drawable/estiloedittext"
         android:drawableStart="@drawable/ic_attach"/>
 
     <LinearLayout
