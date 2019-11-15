@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -33,10 +34,6 @@ public class Conexion extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table usuario(idusuario  INTEGER PRIMARY KEY AUTOINCREMENT, nombre text, password text)");
         sqLiteDatabase.execSQL("create table monto(idmonto  INTEGER PRIMARY KEY AUTOINCREMENT, ingreso real, fecha date)");
         sqLiteDatabase.execSQL("create table gasto(idgasto  INTEGER PRIMARY KEY AUTOINCREMENT, descripcion text, monto real, fecha date )");
-       // sqLiteDatabase.execSQL("create table totalmonto(idtotalmonto  INTEGER PRIMARY KEY AUTOINCREMENT, detalle text,  idgasto, idmonto INTEGER, constraint ((fk_gasto)(fk_monto)) foreign key(idgasto) references gasto(idgasto), idmonto INTEGER, constraint fk_monto foreign key(idmonto) references monto(idmonto))");
-        sqLiteDatabase.execSQL("create table totalmonto(id_totalmonto  INTEGER PRIMARY KEY AUTOINCREMENT, detalle text, idmonto INTEGER, idgasto INTEGER, constraint fk_monto foreign key(idmonto) references monto(idmonto), constraint fk_gasto foreign key(idgasto) references gasto(idgasto))");
-
-
     }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
@@ -46,7 +43,8 @@ public class Conexion extends SQLiteOpenHelper {
         SQLiteDatabase bd = this.getWritableDatabase();
         return bd;
     }
-    public boolean InsertMonto(MontoDto datos) {
+
+   /* public boolean InsertMonto(MontoDto datos) {
         boolean estado = true;
         try {
             int idmonto = datos.getIdmonto();
@@ -71,8 +69,9 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return estado;
 
-    }
+    }*/
 
+   //-----------------------------------------------------------------------------METODOS DE GASTO----------------------------------------------------------------------------
     public boolean consultaFechaGasto(GastosDto datos) {
         boolean estado = true;
         int resultado;
@@ -125,6 +124,7 @@ public class Conexion extends SQLiteOpenHelper {
         }
         return estado;
     }
+    //--------------------------------------------------------------------METODOS DE MONTO---------------------------------------------------------------------------------
 
     public boolean consultaFecha1(MontoDto datos) {
         boolean estado = true;
@@ -152,7 +152,6 @@ public class Conexion extends SQLiteOpenHelper {
         return estado;
     }
 
-
     public boolean consultarIngreso1(MontoDto datos) {
         boolean estado = true;
         int resultado;
@@ -179,11 +178,12 @@ public class Conexion extends SQLiteOpenHelper {
         return estado;
     }
 
-    public boolean ElimiarMonto(final Context context, final MontoDto datos) {
+    public boolean EliminarMonto(final Context context, final MontoDto datos) {
+
         //SQLiteDatabase bd = this.getWritableDatabase();
         estadoDelete = true;
         try {
-            int idmonto = datos.getIdmonto();
+            final int idmonto = datos.getIdmonto();
             Cursor fila = bd().rawQuery("select * from monto where idmonto=" + idmonto, null);
             if (fila.moveToFirst()) {
                 datos.setFecha(fila.getString(0));
@@ -277,7 +277,58 @@ public class Conexion extends SQLiteOpenHelper {
         return estadoDelete;
     }
 
+   /* public boolean modificarporid(GastosDto datos) {
 
+        boolean estado = true;
+        int resultado;
+        SQLiteDatabase bd = this.getWritableDatabase();
+
+        try {
+
+            int idmonto = datos.getIdmonto();
+            String fecha = datos.getFecha();
+            double ingreso = datos.getIngreso();
+
+            ContentValues registro = new ContentValues();
+            registro.put("idmonto", idmonto);
+            registro.put("fecha", fecha);
+            registro.put("ingreso", ingreso);
+
+            int cant = (int) bd.update("monto", registro, "idmonto=" + idmonto, null);
+            int idgasto = datos.getIdgasto();
+
+            String descripcion = datos.getEt_descripcion();
+            String fecha = datos.getEt_fecha();
+            double monto = datos.getEt_monto();
+
+            //String[] parametros = {String.valueOf(datos.getCodigo())};
+
+            ContentValues registro = new ContentValues();
+            registro.put("idgasto", idgasto);
+            registro.put("descripcion", descripcion);
+            registro.put("fecha", fecha);
+            registro.put("monto", monto);
+
+            // int cant = (int) this.getWritableDatabase().update("articulos", registro, "codigo=" + codigo, null);
+            int cant = (int) bd.update("gasto", registro, "idgasto=" + idgasto, null);
+            // bd.update("articulos",registro,"codigo=?",parametros);
+
+
+            bd.close();
+            if (cant > 0) estado = true;
+            else estado = false;
+
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+    }
+=======
+>>>>>>> d778c6b33e9f01f0db352f768db2b4c665b73dbd
+
+*/
+    //------------------------------------------------------------------METODOS DE LISTVIEW-----------------------------------------------------------------------------------------------
 
     public ArrayList<MontoDto> consultaListaMonto() {
         boolean estado = false;
