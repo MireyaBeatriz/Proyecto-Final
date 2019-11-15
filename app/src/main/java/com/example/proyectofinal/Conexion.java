@@ -17,6 +17,7 @@ public class Conexion extends SQLiteOpenHelper {
 
     boolean estadoDelete;
 
+
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
 
