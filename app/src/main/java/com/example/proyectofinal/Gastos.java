@@ -150,11 +150,11 @@ public class Gastos extends AppCompatActivity {
             datos.setIdgasto(Integer.parseInt(id));
 
 
-            if(conexion.modificarporid(datos)){
+            /*if(conexion.modificarporid(datos)){
                 Toast.makeText(this, "Registro Modificado Correctamente.", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
-            }
+            }*/
         }
     }
 

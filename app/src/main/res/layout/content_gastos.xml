@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Gastos"
     tools:showIn="@layout/activity_gastos"
-    android:background="@drawable/estilopantalla"
+    android:background="#AF9393"
     android:orientation="vertical">
 
     <TextView
@@ -82,26 +82,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btn_guardar"
-            android:layout_width="105dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_estilo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rubi"
             android:onClick="Guardar"
             android:text="Guardar" />
 
         <Button
             android:id="@+id/btn_consultar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Buscar por Descripcion"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/btn_estilo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rubi"
             android:onClick="ConsultarDescripcion"
             />
 
@@ -109,58 +109,47 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btn_buscar"
-            android:layout_width="170dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/btn_estilo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rubi"
             android:onClick="ConsultarFecha"
             android:text="Buscar por Fecha" />
 
-        <Button
-            android:id="@+id/btn_nuevo"
-            android:layout_width="139dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/btn_estilo"
-            android:onClick="Nuevo"
-            android:text="Registro Nuevo" />
 
-
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/btn_modificar"
-                android:layout_width="139dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/btn_estilo"
-                android:onClick="modificarporid"
-                android:text="Modifcar"
-                />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:orientation="vertical">
-
-            <include layout="@layout/footer" />
-            />
-
-    </LinearLayout>
         </LinearLayout>
+
+
+
+
+    <Button
+        android:id="@+id/btn_modificar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rubi"
+        android:onClick="modificarporid"
+        android:text="Modifcar" />
+
+    <Button
+        android:id="@+id/btn_nuevo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rubi"
+        android:onClick="Nuevo"
+        android:text="Registro Nuevo" />
+
+    <include layout="@layout/footer" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

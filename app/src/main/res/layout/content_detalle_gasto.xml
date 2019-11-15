@@ -80,6 +80,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
+                        android:background="@drawable/rubi"
                         android:text="Eliminar"
                         android:onClick="eliminarporid"/>
 
@@ -133,6 +134,7 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
+                        android:background="@drawable/rubi"
                         android:text="Modificar"
                         android:onClick="modificarporid"/>
 
