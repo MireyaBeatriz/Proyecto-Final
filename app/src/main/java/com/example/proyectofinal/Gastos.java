@@ -135,7 +135,30 @@ public class Gastos extends AppCompatActivity {
             Toast.makeText(this, "Ingrese fecha a buscar.", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+   /* public void eliminarporfecha(View v) {
+        if(et_fecha.getText().toString().length()==0){
+            et_fecha.setError("campo obligatorio");
+            estadofecha = false;
+
+        }else { estadofecha=true; }
+
+        if(estadofecha){
+            String cod = et_fecha.getText().toString();
+            datos.setEt_fecha((cod));
+            if(conexion.eliminarporfecha(Gastos.this,datos)){ //Toast.makeText(this, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                limpiarDatos();
+            }else{
+                Toast.makeText(this, "No existe un artículo con dicho código.", Toast.LENGTH_SHORT).show();
+                limpiarDatos();
+            }
+        }*/
+
+
+
+
+
+
 }
-
-
 

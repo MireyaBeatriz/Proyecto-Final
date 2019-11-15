@@ -14,7 +14,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Conexion extends SQLiteOpenHelper {
+
     boolean estadoDelete;
+
 
     ArrayList<String> listaMonto;
     ArrayList<MontoDto> montoList;
@@ -226,12 +228,64 @@ public class Conexion extends SQLiteOpenHelper {
         return estadoDelete;
     }
 
-    public boolean modificarMonto(MontoDto datos) {
+    public boolean ElimiarGasto(final Context context, final GastosDto datos) {
+        //SQLiteDatabase bd = this.getWritableDatabase();
+        estadoDelete = true;
+        try {
+            int idgasto = datos.getIdgasto();
+            Cursor fila = bd().rawQuery("select * from gasto where idgasto=" + idgasto, null);
+            if (fila.moveToFirst()) {
+                datos.setEt_fecha(fila.getString(0));
+                datos.setEt_descripcion(fila.getString(1));
+
+                datos.setEt_monto(Double.parseDouble(fila.getString(2)));
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setIcon(R.drawable.ic_delete);
+                builder.setTitle("Warning");
+                builder.setMessage("¿Esta seguro de borrar el registro? \nDescripcion: " + datos.getEt_descripcion() + "\nId: " + datos.getIdgasto() + "\nMonto: " + datos.getEt_monto());
+                builder.setCancelable(false);
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) { //String[] parametros = {String.valueOf(datos.getCodigo())};
+                        int idgasto = datos.getIdgasto();
+                        int cant = bd().delete("gasto", "idgasto=" + idgasto, null);
+                        //bd().delete("articulos","codigo=?",parametros);
+
+                        if (cant > 0) {
+                            estadoDelete = true;
+                            Toast.makeText(context, "Registro eliminado satisfactoriamente.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            estadoDelete = false;
+                        }
+                        bd().close();
+                    }
+                });
+                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            } else {
+                Toast.makeText(context, "No hay resultados encontrados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            estadoDelete = false;
+            Log.e("Error.", e.toString());
+        }
+        return estadoDelete;
+    }
+
+   /* public boolean modificarporid(GastosDto datos) {
+
         boolean estado = true;
         int resultado;
         SQLiteDatabase bd = this.getWritableDatabase();
 
         try {
+
             int idmonto = datos.getIdmonto();
             String fecha = datos.getFecha();
             double ingreso = datos.getIngreso();
@@ -242,6 +296,24 @@ public class Conexion extends SQLiteOpenHelper {
             registro.put("ingreso", ingreso);
 
             int cant = (int) bd.update("monto", registro, "idmonto=" + idmonto, null);
+            int idgasto = datos.getIdgasto();
+
+            String descripcion = datos.getEt_descripcion();
+            String fecha = datos.getEt_fecha();
+            double monto = datos.getEt_monto();
+
+            //String[] parametros = {String.valueOf(datos.getCodigo())};
+
+            ContentValues registro = new ContentValues();
+            registro.put("idgasto", idgasto);
+            registro.put("descripcion", descripcion);
+            registro.put("fecha", fecha);
+            registro.put("monto", monto);
+
+            // int cant = (int) this.getWritableDatabase().update("articulos", registro, "codigo=" + codigo, null);
+            int cant = (int) bd.update("gasto", registro, "idgasto=" + idgasto, null);
+            // bd.update("articulos",registro,"codigo=?",parametros);
+
 
             bd.close();
             if (cant > 0) estado = true;
@@ -254,7 +326,9 @@ public class Conexion extends SQLiteOpenHelper {
         return estado;
     }
 
+*/
     //------------------------------------------------------------------METODOS DE LISTVIEW-----------------------------------------------------------------------------------------------
+
     public ArrayList<MontoDto> consultaListaMonto() {
         boolean estado = false;
         //SQLiteDatabase bd = this.getWritableDatabase();
@@ -423,4 +497,7 @@ public class Conexion extends SQLiteOpenHelper {
         //return articulosList;
         return listaGasto;
     }
+
+
 }
+
