@@ -84,9 +84,25 @@ public class ListaGasto extends AppCompatActivity {
             }
         });
 
+        //al dar click normal
+        listViewGasto.setOnItemLongClickListener(new  AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
 
+                GastosDto gasto = conexion.consultaListaGasto().get(pos);
 
+                Intent i = new Intent(ListaGasto.this, EditarGasto.class);
+                startActivity(i);
 
+                //crear el bundle
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("gasto", gasto);
+                i.putExtras(bundle);
+                startActivity(i);
+
+                return true;
+            }
+        });
 
     }
 }
