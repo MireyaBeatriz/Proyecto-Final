@@ -102,6 +102,7 @@ public class ListaMonto extends AppCompatActivity {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
 
+
                     MontoDto monto = conexion.consultaListaMonto().get(pos);
 
                     Intent i = new Intent(ListaMonto.this, EditarMonto.class);

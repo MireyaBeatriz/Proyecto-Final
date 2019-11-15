@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">ProyectoFinal</string>
+    <string name="app_name">Presupuesto</string>
     <string name="action_monto">Monto</string>
     <string name="action_gastos">gastos</string>
     <string name="action_Lista">Lista</string>
     <string name="action_Lista_gasto">Lista</string>
     <string name="pass">pass</string>
-
+    <string name="action_resultado">Resultado</string>
 </resources>

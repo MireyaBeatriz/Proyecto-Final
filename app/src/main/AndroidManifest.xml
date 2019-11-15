@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditarGasto"></activity>
+        <activity android:name=".Resultado"></activity>
+        <activity android:name=".EditarGasto" />
         <activity android:name=".EditarMonto" />
         <activity android:name=".ListaMonto" />
         <activity android:name=".ListaGasto" />
