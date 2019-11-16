@@ -8,17 +8,32 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Gastos"
     tools:showIn="@layout/activity_gastos"
-    android:background="#82CC7B"
+    android:background="#AF9393"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ingrese lo que se le pide a continuacion"
-        android:fontFamily="cursive"
+        android:layout_marginLeft="20dp"
         android:textSize="28dp"
         android:layout_marginTop="15dp"
         android:textColor="#000"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="5dp"
+            android:background="#000" />
 
     <EditText
         android:id="@+id/et_descripcion"
@@ -27,9 +42,8 @@
         android:hint=" Descripcion de el gasto a realizar "
         android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
-        android:layout_marginLeft="15dp"
-        android:fontFamily="cursive"
-        android:textColor="#000"
+        android:layout_marginLeft="20dp"
+         android:textColor="#000"
         android:drawableStart="@drawable/ic_description"
         android:textSize="20dp"/>
 
@@ -40,8 +54,7 @@
         android:hint=" Fecha de realizacion "
         android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
-        android:layout_marginLeft="15dp"
-        android:fontFamily="cursive"
+        android:layout_marginLeft="20dp"
         android:textColor="#000"
         android:textSize="20dp"
         android:inputType="date"
@@ -54,8 +67,7 @@
         android:hint=" Monto del gasto"
         android:layout_marginTop="30dp"
         android:layout_marginRight="50dp"
-        android:layout_marginLeft="15dp"
-        android:fontFamily="cursive"
+        android:layout_marginLeft="20dp"
         android:textColor="#000"
         android:textSize="20dp"
         android:inputType="date"
@@ -64,58 +76,74 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <Button
-        android:id="@+id/btn_guardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_save"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:onClick="Guardar"/>
-
-
-    <Button
-        android:id="@+id/btn_nuevo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_add"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="60dp" />
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_eliminar"
-            android:layout_width="wrap_content"
+            android:id="@+id/btn_guardar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_delete"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rubi"
+            android:onClick="Guardar"
+            android:text="Guardar" />
+
+        <Button
+            android:id="@+id/btn_consultar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscar por Descripcion"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rubi"
+            android:onClick="ConsultarDescripcion"
             />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-    <Button
-            android:id="@+id/btn_modificar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_edit"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="90dp"
-       />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btn_buscar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_search"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="40dp"
-            android:onClick="consultapordescripcion"/>
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rubi"
+            android:onClick="ConsultarFecha"
+            android:text="Buscar por Fecha" />
 
-    </LinearLayout>
 
+        </LinearLayout>
+
+
+
+
+    <Button
+        android:id="@+id/btn_modificar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rubi"
+        android:onClick="modificarporid"
+        android:text="Modifcar" />
+
+    <Button
+        android:id="@+id/btn_nuevo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rubi"
+        android:onClick="Nuevo"
+        android:text="Registro Nuevo" />
+
+    <include layout="@layout/footer" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

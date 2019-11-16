@@ -24,16 +24,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Detalle de Presupuesto Gasto"
+            android:text="Detalle de Gasto"
             android:textSize="25sp"
-            android:textStyle="bold"
             android:layout_marginBottom="30dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:textColor="#445DE4"
+            android:textColor="#070707"
             android:background="#fff"
             android:textAlignment="center"/>
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -44,175 +44,244 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="121dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:text="Id: "
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textStyle="bold"
+                android:textColor="#141414"
                 android:textSize="18dp"
-                android:textColor="#141414" />
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_id"
+                        android:layout_width="125dp"
+                        android:layout_height="47dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="#03A9F4"
+                        android:textSize="25dp" />
+
+                    <Button
+                        android:layout_width="164dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rubi"
+                        android:text="Eliminar"
+                        android:onClick="eliminarporid"/>
+
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="xxxxx"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textColor="#03A9F4" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Descripción: "
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:inputType="text"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:textColor="#0F0F0F" />
-
-            <TextView android:id="@+id/tv_descripcion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="xxxxxxx"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textColor="#03A9F4" />
-
-            <TextView android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Fecha: "
+                android:text="Monto: "
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:inputType="date"
                 android:textStyle="bold"
                 android:textSize="18dp"
-                android:textColor="#111111" />
+                android:textColor="#0F0F0F" />
 
-            <TextView android:id="@+id/tv_fecha"
+            <TextView
+                android:id="@+id/tv_descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="xxxxxxx"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:textColor="#03A9F4" />
+                android:layout_marginBottom="5dp"
+                android:textColor="#03A9F4"
+                android:textSize="25dp" />
 
-
-            <TextView android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Monto: "
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textStyle="bold"
-                android:textSize="18dp"
-                android:textColor="#111111" />
-
-            <TextView android:id="@+id/tv_monto"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="000.00"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:textColor="#03A9F4" />
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="125dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Descripción: "
+                        android:textColor="#111111"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:layout_width="164dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/rubi"
+                        android:text="Modificar"
+                        android:onClick="Editar"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_fecha"
+                    android:layout_width="90dp"
+                    android:layout_height="36dp"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="#03A9F4" />
+                <TextView
+                    android:layout_width="125dp"
+                    android:layout_height="52dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Fecha: "
+                    android:textColor="#111111"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_monto"
+                    android:layout_width="90dp"
+                    android:layout_height="36dp"
+                    android:textSize="25dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:textColor="#03A9F4" />
+
+            </LinearLayout>
+
+
 
             <!--<android.support.v7.widget.CardView-->
             <androidx.cardview.widget.CardView
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                card_view:cardUseCompatPadding="true"
-                card_view:cardElevation="4dp"
-                card_view:cardCornerRadius="3dp"
+                app:cardUseCompatPadding="true"
+                android:layout_marginTop="15dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="3dp"
                 android:layout_margin="6dp">
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="6dp"
-                    android:gravity="center">
+                    android:padding="6dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="5dp"
                         android:layout_marginLeft="0dp"
-                        android:background="#A1D5EC" >
+                        android:layout_marginTop="5dp"
+                        android:background="#A1D5EC"
+                        android:orientation="horizontal">
 
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_search"/>
+                            android:src="@drawable/ic_search" />
 
 
-                        <TextView android:id="@+id/tvInformId"
-                            android:textColor="#000"
+                        <TextView
+                            android:id="@+id/tvInformId"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Resultado de la busqueda del presupuesto"
-                            android:padding="5dp" />
+                            android:padding="5dp"
+                            android:text="Resultado de la busqueda del gasto"
+                            android:textColor="#000" />
                     </LinearLayout>
 
-                    <TextView android:id="@+id/tvUserName"
+                    <TextView
+                        android:id="@+id/tvUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@android:style/TextAppearance"
+                        android:layout_marginTop="25dp"
                         android:text="Id:"
-                        android:layout_marginTop="25dp" />
+                        android:textAppearance="@android:style/TextAppearance" />
 
                     <TextView
                         android:id="@+id/tv_id1"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxx"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:id="@+id/tvUserName1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Descripción:"
+                        android:textAppearance="@android:style/TextAppearance" />
+
+                    <TextView
+                        android:id="@+id/tv_fecha1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxxxxx"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:id="@+id/tvUserName2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fecha:"
+                        android:textAppearance="@android:style/TextAppearance" />
+
+                    <TextView
+                        android:id="@+id/tv_monto1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:text="xxxxx" />
+                        android:textColor="@color/colorPrimaryDark" />
 
-                    <TextView android:id="@+id/tvUserName1"
+                    <TextView
+                        android:id="@+id/tvUserName3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="@android:style/TextAppearance"
-                        android:text="Fecha:" />
+                        android:text="Monto:"
+                        android:textAppearance="@android:style/TextAppearance" />
 
-                    <TextView android:id="@+id/tv_descripcion1"
-                        android:textColor="@color/colorPrimaryDark"
+                    <TextView
+                        android:id="@+id/tv_descripcion1"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_height="wrap_content"
-                        android:text="xxxxxxx" />
-
-                    <TextView android:id="@+id/tvUserName2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="@android:style/TextAppearance"
-                        android:text="Ingreso:" />
-
-                    <TextView android:id="@+id/tv_fecha1"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_width="wrap_content"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_height="wrap_content"
-                        android:text="xxxxxxx" />
-
-                    <TextView android:id="@+id/tvUserName3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="@android:style/TextAppearance"
-                        android:text="Ingreso:" />
-
-                    <TextView android:id="@+id/tv_monto1"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_width="wrap_content"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_height="wrap_content"
-                        android:text="000.00" />
+                        android:textColor="@color/colorPrimaryDark" />
 
 
 
@@ -230,10 +299,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:orientation="vertical">
-
-
                 <include layout="@layout/footer" />
                 />
             </LinearLayout>
