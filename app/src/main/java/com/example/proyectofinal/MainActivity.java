@@ -1,7 +1,10 @@
 package com.example.proyectofinal;
 
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,14 +13,20 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private PendingIntent pendingIntent;
+    private final static String CHANNEL_ID = "NOTIFICACION";
+    private final static int NOTIFICACION_ID = 0;
     AlertDialog.Builder dialogo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_resultado) {
-            Intent i = new Intent(MainActivity.this,ListaGasto.class);
-            startActivity(i);
+            createNotificacion();
             return true;
         }
 
@@ -115,4 +123,26 @@ public class MainActivity extends AppCompatActivity {
         dialogo.show();
     }
 
+
+
+    private void createNotificacion(){
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.ic_alert);
+        builder.setContentTitle("Notificación de Presupuesto");
+        builder.setContentText("Resultado de presupuesto");
+        builder.setColor(Color.BLUE);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        builder.setLights(Color.MAGENTA, 1000, 1000);
+        builder.setVibrate(new long[]{1000, 1000, 1000, 1000, 100});
+        builder.setDefaults(Notification.DEFAULT_SOUND);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
+        notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
+
+        Intent i = new Intent(MainActivity.this, Resultado.class);
+        startActivity(i);
+    }
+
 }
+
+

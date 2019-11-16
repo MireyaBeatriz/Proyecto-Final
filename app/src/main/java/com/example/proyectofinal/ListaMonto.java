@@ -97,7 +97,7 @@ public class ListaMonto extends AppCompatActivity {
                 }
             });
 
-            //al dar click normal
+            //al dar click largo
             listViewMonto.setOnItemLongClickListener(new  AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int pos, long l) {
