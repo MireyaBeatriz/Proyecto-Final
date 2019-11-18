@@ -22,6 +22,7 @@ private Button btnEditar;
         et_descripcion = findViewById(R.id.et_descripcion);
         et_fecha = findViewById(R.id.et_fecha);
         et_monto = findViewById(R.id.et_monto);
+
 //desde aqui empieza lo de modificar
         String senal = "";
         String idgasto ="";
