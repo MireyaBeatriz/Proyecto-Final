@@ -42,32 +42,31 @@
                 android:id="@+id/edtFecha"
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
-                android:layout_marginTop="15dp"
-                android:background="#917979"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:hint="Ingrese fecha de ingreso"
-                android:paddingLeft="15dp"
-                android:inputType="datetime"
+                android:drawablePadding="5dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="20dp"
                 android:textSize="25dp"
+                android:inputType="datetime"
+                android:paddingLeft="15dp"
                 android:textColorHint="#000"
-                android:textColor="#000"/>
+                android:drawableStart="@drawable/fecha" />
 
 
             <EditText
                 android:id="@+id/edtIngreso"
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
-                android:layout_marginTop="15dp"
-                android:background="#917979"
                 android:hint="Cantidad de Monto inicial"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textColorHint="#000"
-                android:inputType="date"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="20dp"
                 android:textSize="25dp"
+                android:inputType="date"
                 android:paddingLeft="15dp"
-                android:textColor="#000"/>
+                android:textColorHint="#000"
+                android:drawableStart="@drawable/money" />
 
             <Button
                 android:layout_width="match_parent"

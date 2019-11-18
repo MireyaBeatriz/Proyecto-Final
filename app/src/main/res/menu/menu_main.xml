@@ -25,10 +25,7 @@
         android:orderInCategory="4"
         android:title="Lista" />
 
-    <item
-        android:id="@+id/action_mostrar_gastos"
-        android:orderInCategory="5"
-        android:title="Mostrar Gastos" />
+
 
     <item
         android:id="@+id/action_Lista_gasto"

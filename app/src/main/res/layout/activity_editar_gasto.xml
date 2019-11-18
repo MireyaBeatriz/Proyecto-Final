@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#AF9393"
     tools:context=".EditarGasto">
 
     <!-- TODO: Update blank fragment layout -->
@@ -22,7 +23,7 @@
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="EDITAR MONTO"
-        android:textColor="?android:attr/colorActivatedHighlight"
+        android:textColor="#000"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -34,7 +35,8 @@
         android:ems="10"
         android:enabled="false"
         android:hint="Id"
-        android:inputType="number" />
+        android:inputType="number"
+        android:textColorHint="#000"/>
 
     <EditText
         android:id="@+id/et_descripcion"
@@ -43,7 +45,9 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Descripcion"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColorHint="#000"/>
+
     <EditText
         android:id="@+id/et_fecha"
         android:layout_width="match_parent"
@@ -51,7 +55,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Fecha"
-        android:inputType="text" />
+        android:inputType="text"
+        android:textColorHint="#000"/>
 
     <EditText
         android:id="@+id/et_monto"
@@ -60,7 +65,8 @@
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="monto"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:textColorHint="#000"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,6 +80,7 @@
             android:layout_height="75dp"
             android:layout_weight="1"
             android:text="Modificar"
+            android:background="@drawable/rubi"
             />
         <!--app:srcCompat="@drawable/ic_modificar"-->
     </LinearLayout>
