@@ -129,8 +129,13 @@ public class MainActivity extends AppCompatActivity {
             limpiar();
         }
 
+<<<<<<< HEAD
     }*/
 
+=======
+    }
+*/
+>>>>>>> c8c53fb8f451e82ecf380f3e4165907aa6b99837
     private void limpiar(){
         etEmail.setText(null);
         etPassword.setText(null);

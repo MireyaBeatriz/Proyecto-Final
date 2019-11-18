@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AF9393"
     tools:context=".ListaGasto">
 
     <LinearLayout
@@ -11,13 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="#E2C6D0"
+        android:background="#AF9393"
         android:orientation="vertical">
 
         <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="LISTADO DE GASTO REGISTRADO"
-            android:fontFamily="serif-monospace"
             android:textAlignment="center"
             android:textSize="16dp"
             android:textStyle="bold"

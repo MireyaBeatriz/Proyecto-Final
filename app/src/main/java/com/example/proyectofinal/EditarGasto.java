@@ -2,22 +2,31 @@ package com.example.proyectofinal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class EditarGasto extends AppCompatActivity {
 
-    private EditText et_descripcion, et_fecha, et_monto,edtIdmonto;
+    GastosDto datos = new GastosDto();
+Conexion conexion = new Conexion(this);
+    boolean estadoidgasto = false;
+
+
+    private EditText et_descripcion, et_fecha, et_monto,edtIdgasto;
 private Button btnEditar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_gasto);
 
-        edtIdmonto = findViewById(R.id.edtIdmonto);
+        edtIdgasto = findViewById(R.id.edtIdgasto);
         btnEditar = findViewById(R.id.btnEditar);
         et_descripcion = findViewById(R.id.et_descripcion);
         et_fecha = findViewById(R.id.et_fecha);
@@ -41,7 +50,7 @@ private Button btnEditar;
 
 
                if (senal.equals("1")){
-                    edtIdmonto.setText(idgasto);
+                    edtIdgasto.setText(idgasto);
                    et_descripcion.setText(descripcion);
                    et_fecha.setText(fecha);
                    et_monto.setText(monto);
@@ -49,6 +58,33 @@ private Button btnEditar;
            }
         }catch (Exception e){
 
+        }
+    }
+
+    public void modificar(View v) {
+        if(edtIdgasto.getText().toString().length()==0){
+            edtIdgasto.setError("campo obligatorio");
+            estadoidgasto = false;
+
+        }else { estadoidgasto=true;
+        }
+
+        if(estadoidgasto) {
+            String idgasto = edtIdgasto.getText().toString();
+            String descripcion = et_descripcion.getText().toString();
+            String fecha =(et_fecha.getText().toString());
+            int monto = Integer.parseInt(et_monto.getText().toString());
+
+            datos.setIdgasto(Integer.parseInt(idgasto));
+            datos.setEt_descripcion(descripcion);
+            datos.setEt_fecha(fecha);
+            datos.setEt_monto(monto);
+
+            if(conexion.modificar(datos)){
+                Toast.makeText(this, "Registro Modificado Correctamente.", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
