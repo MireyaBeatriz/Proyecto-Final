@@ -65,7 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_weight="1"
-            android:text="Modificar" />
+            android:text="Modificar"
+            android:onClick="modificar"/>
         <!--app:srcCompat="@drawable/ic_modificar"-->
     </LinearLayout>
 

@@ -13,10 +13,14 @@ import android.widget.Toast;
 
 public class EditarMonto extends AppCompatActivity {
 
+    boolean estadoIdmonto = false;
+
+
     private Button btnEditar;
     private EditText edtIdmonto, edtFecha, edtIngreso;
 
     MontoInicial datos = new MontoInicial();
+    MontoDto datos1 = new MontoDto();
     Conexion conexion = new Conexion(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,29 @@ public class EditarMonto extends AppCompatActivity {
         }catch (Exception e){
 
         }
+    }
+        public void modificar(View v) {
+            if(edtIdmonto.getText().toString().length()==0){
+                edtIdmonto.setError("campo obligatorio");
+                estadoIdmonto = false;
+
+            }else { estadoIdmonto=true;
+            }
+
+            if(estadoIdmonto) {
+                String id = edtIdmonto.getText().toString();
+                String fecha = edtFecha.getText().toString();
+                int ingreso = Integer.parseInt(edtIngreso.getText().toString());
+                datos1.setIdmonto(Integer.parseInt(id));
+                datos1.setFecha(fecha);
+                datos1.setIngreso((ingreso));
+
+                if(conexion.modificar(datos1)){
+                    Toast.makeText(this, "Registro Modificado Correctamente.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+                }
+            }
 }
 }
 

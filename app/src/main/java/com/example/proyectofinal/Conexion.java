@@ -503,6 +503,39 @@ public class Conexion extends SQLiteOpenHelper {
         return listaGasto;
     }
 
+//editar Monto
 
+    public boolean modificar(MontoDto datos) {
+        boolean estado = true;
+        int resultado;
+        SQLiteDatabase bd = this.getWritableDatabase();
+
+        try {
+            int idmonto = datos.getIdmonto();
+
+            String fecha = datos.getFecha();
+            double ingreso = datos.getIngreso();
+
+            //String[] parametros = {String.valueOf(datos.getCodigo())};
+
+            ContentValues registro = new ContentValues();
+            registro.put("idmonto", idmonto);
+            registro.put("fecha", fecha);
+            registro.put("ingreso", ingreso);
+
+            // int cant = (int) this.getWritableDatabase().update("articulos", registro, "codigo=" + codigo, null);
+            int cant = (int) bd.update("monto", registro, "idmonto=" + idmonto, null);
+            // bd.update("articulos",registro,"codigo=?",parametros);
+
+            bd.close();
+            if (cant > 0) estado = true;
+            else estado = false;
+
+        } catch (Exception e) {
+            estado = false;
+            Log.e("error.", e.toString());
+        }
+        return estado;
+    }
 }
 
