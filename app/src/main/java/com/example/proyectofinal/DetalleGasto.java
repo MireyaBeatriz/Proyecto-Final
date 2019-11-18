@@ -93,6 +93,9 @@ public class DetalleGasto  extends AppCompatActivity {
             public void Editar(View v) {
 
                 Intent i = new Intent(DetalleGasto.this,EditarGasto.class);
+
+
+
                 startActivity(i);
 
             }
