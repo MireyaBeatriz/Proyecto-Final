@@ -21,13 +21,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="EDITAR MONTO"
+        android:text="EDITAR GASTO"
         android:textColor="?android:attr/colorActivatedHighlight"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edtIdmonto"
+        android:id="@+id/edtIdgasto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -74,7 +74,7 @@
             android:layout_height="75dp"
             android:layout_weight="1"
             android:text="Modificar"
-            />
+            android:onClick="modificar"/>
         <!--app:srcCompat="@drawable/ic_modificar"-->
     </LinearLayout>
 

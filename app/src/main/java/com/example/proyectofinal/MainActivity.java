@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /*public void Entrar(View view) {
+    public void Entrar(View view) {
         if (etEmail.getText().toString().length() == 0) {
             etEmail.setError("Campo obligatorio");
             estado_correo = false;
@@ -106,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, Main2Activity.class);
             startActivity(i);
         }
-    }*/
-    public void login(View v){
+    }
+   /* public void login(View v){
 
         if (Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches() == false) {
             //mEmail.setBackgroundColor(Color.GREEN);
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+*/
     private void limpiar(){
         etEmail.setText(null);
         etPassword.setText(null);
