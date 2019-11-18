@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Gastos extends AppCompatActivity {
 
     private EditText et_descripcion, et_fecha, et_monto;
@@ -40,6 +44,9 @@ public class Gastos extends AppCompatActivity {
         et_fecha = (EditText) findViewById(R.id.et_fecha);
         et_monto = (EditText) findViewById(R.id.et_monto);
 
+        DateFormat formatodate =new SimpleDateFormat("yyyy/MM/dd");
+        String date = formatodate.format(new Date());
+        et_fecha.setText(date);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +67,8 @@ public class Gastos extends AppCompatActivity {
         //Toast.makeText(getContext(), "Ingrese todos los datos", Toast.LENGTH_SHORT).show();
     }
     public void Guardar (View view) {
+
+
 
         SQLiteDatabase bd = conexion.getWritableDatabase();
         String idgasto = null;

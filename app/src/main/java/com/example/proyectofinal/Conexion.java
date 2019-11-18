@@ -34,7 +34,7 @@ public class Conexion extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table usuario(idusuario  INTEGER PRIMARY KEY AUTOINCREMENT, nombre text, password text)");
         sqLiteDatabase.execSQL("create table monto(idmonto  INTEGER PRIMARY KEY AUTOINCREMENT, ingreso real, fecha date)");
-        sqLiteDatabase.execSQL("create table gasto(idgasto  INTEGER PRIMARY KEY AUTOINCREMENT, descripcion text, monto real, fecha text )");
+        sqLiteDatabase.execSQL("create table gasto(idgasto  INTEGER PRIMARY KEY AUTOINCREMENT, descripcion text, fecha text , monto real)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
@@ -430,9 +430,11 @@ public class Conexion extends SQLiteOpenHelper {
 
                 gasto = new GastosDto();
                 gasto.setIdgasto(fila.getInt(0));
-                gasto.setEt_fecha(fila.getString(1));
-                gasto.setEt_descripcion(fila.getString(2));
+                gasto.setEt_descripcion(fila.getString(1));
+                gasto.setEt_fecha(fila.getString(2));
                 gasto.setEt_monto(fila.getDouble(3));
+
+
 
                 gastoList.add(gasto);
 

@@ -10,13 +10,14 @@ import android.widget.Toast;
 
 public class EditarGasto extends AppCompatActivity {
 
-    private EditText et_descripcion, et_fecha, et_monto;
+    private EditText et_descripcion, et_fecha, et_monto,edtIdmonto;
 private Button btnEditar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_gasto);
 
+        edtIdmonto = findViewById(R.id.edtIdmonto);
         btnEditar = findViewById(R.id.btnEditar);
         et_descripcion = findViewById(R.id.et_descripcion);
         et_fecha = findViewById(R.id.et_fecha);
@@ -37,10 +38,9 @@ private Button btnEditar;
                fecha = bundle.getString("fecha");
                monto = bundle.getString("monto");
 
-               Toast.makeText(EditarGasto.this, "idgasto:" +idgasto+"\n" +
-                       "descripcion" +descripcion +"fecha"+ fecha+"monto"+ monto, Toast.LENGTH_SHORT).show();
 
                if (senal.equals("1")){
+                    edtIdmonto.setText(idgasto);
                    et_descripcion.setText(descripcion);
                    et_fecha.setText(fecha);
                    et_monto.setText(monto);
