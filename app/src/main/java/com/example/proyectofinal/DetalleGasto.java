@@ -13,6 +13,10 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DetalleGasto  extends AppCompatActivity {
 
     private TextView tv_id, tv_descripcion, tv_fecha, tv_monto;
@@ -102,17 +106,20 @@ btn_editar = findViewById(R.id.btnEditar);
     }
             public void Editar(View v) {
 
+
+
                 Intent i = new Intent(DetalleGasto.this,EditarGasto.class);
                 i.putExtra("senal","1");
-                i.putExtra("idgasto",gastosDto.getIdgasto());
-                i.putExtra("descripcion",gastosDto.getEt_fecha());
-                i.putExtra("fecha",String.valueOf(gastosDto.getEt_monto()));
-                i.putExtra("monto",gastosDto.getEt_descripcion());
+                i.putExtra("idgasto",String.valueOf(gastosDto.getIdgasto()));
+                i.putExtra("descripcion",gastosDto.getEt_descripcion());
+                i.putExtra("fecha",gastosDto.getEt_fecha());
+                //i.putExtra("fecha",date);
+                i.putExtra("monto",String.valueOf(gastosDto.getEt_monto()));
                 startActivity(i);
 
-             /* Toast.makeText(DetalleGasto.this, "idgasto:" +gastosDto.getIdgasto()+"\n" +
-                      "descripcion" +gastosDto.getEt_fecha()+"fecha"+String.valueOf(gastosDto.getEt_monto())+"monto"+gastosDto.getEt_descripcion(), Toast.LENGTH_SHORT).show();
-*/
+              Toast.makeText(DetalleGasto.this, "idgasto:" +gastosDto.getIdgasto()+"\n" +
+                      "descripcion" +gastosDto.getEt_descripcion()+"fecha"+gastosDto.getEt_fecha()+"monto"+String.valueOf(gastosDto.getEt_monto()), Toast.LENGTH_SHORT).show();
+
 
             }
         }

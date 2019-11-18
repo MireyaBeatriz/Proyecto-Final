@@ -8,18 +8,28 @@
     android:background="#AF9393"
     tools:context=".Resultado">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resultado de Presupuesto"
+        android:layout_marginTop="15dp"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="26sp" />
+
     <TableLayout
         android:id="@+id/Tabla"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="30dp"
         android:orientation="vertical">
 
         <TableRow
             android:id="@+id/Cabecera"
-            android:layout_width="fill_parent"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_height="64dp">
+            android:layout_marginRight="20dp">
 
             <TextView
                 android:id="@+id/ColumnaIdmonto"
@@ -32,8 +42,8 @@
 
             <TextView
                 android:id="@+id/columnaFecha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="218dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:padding="5px"
                 android:text="Fecha"
@@ -42,11 +52,11 @@
 
             <TextView
                 android:id="@+id/ColumnaIngreso"
-                android:layout_width="wrap_content"
+                android:layout_width="113dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:padding="5px"
-                android:paddingLeft="15dp"
+                android:paddingLeft="5dp"
                 android:paddingTop="15dp"
                 android:text="Ingreso"
                 android:textColor="#000"
@@ -56,15 +66,15 @@
         <TableRow
             android:id="@+id/SeparadorCabecera"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <FrameLayout
                 android:id="@+id/LineaCabecera"
                 android:layout_width="fill_parent"
-                android:layout_height="2px"
-                android:layout_span="6"
-                android:backgroundTint="#000"
-                android:background="#ffff">
+                android:layout_height="wrap_content"
+                android:layout_span="20"
+                android:background="#0F0F0F">
             </FrameLayout>
         </TableRow>
 
@@ -76,7 +86,7 @@
             android:layout_marginRight="20dp">
 
             <TextView
-                android:id="@+id/Anio1"
+                android:id="@+id/Id1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1990"
@@ -86,7 +96,7 @@
                 android:padding="5px"/>
 
             <TextView
-                android:id="@+id/Ciudad1"
+                android:id="@+id/Fecha1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -94,6 +104,7 @@
                 android:text="Paris"
                 android:textColor="#000"
                 android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/Oro1"
                 android:layout_width="wrap_content"
@@ -113,8 +124,10 @@
                 android:text="1"
                 android:textColor="#000"
                 android:textSize="20sp" />
+
+
+
             <TextView
-                android:id="@+id/Bronce1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -122,6 +135,7 @@
                 android:textColor="#000"
                 android:textSize="20sp"
                 android:padding="5px"/>
+
         </TableRow>
 
         <TableRow
@@ -184,23 +198,8 @@
                 android:textSize="20sp" />
 
 
+
         </TableRow>
-
-
-
     </TableLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <Button
-        android:id="@+id/btnNotificacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Notificacion"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/rubi"
-        />
-</LinearLayout>
 </LinearLayout>

@@ -26,7 +26,6 @@
         android:title="Lista" />
 
 
-
     <item
         android:id="@+id/action_Lista_gasto"
         android:orderInCategory="6"
