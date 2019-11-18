@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Presupuesto</string>
+    <string name="app_name">ControlPresupuesto</string>
     <string name="action_monto">Monto</string>
     <string name="action_gastos">gastos</string>
     <string name="action_Lista">Lista</string>
     <string name="action_Lista_gasto">Lista</string>
     <string name="pass">pass</string>
     <string name="action_resultado">Resultado</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

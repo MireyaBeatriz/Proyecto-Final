@@ -3,7 +3,7 @@ package com.example.proyectofinal;
 import java.io.Serializable;
 
 public class GastosDto implements Serializable  {
-    private Integer idgasto;
+    private int idgasto;
     private String et_descripcion;
     private String et_fecha;
     private double et_monto;
@@ -39,11 +39,11 @@ public class GastosDto implements Serializable  {
         this.et_monto = et_monto;
     }
 
-    public Integer getIdgasto() {
+    public int getIdgasto() {
         return idgasto;
     }
 
-    public void setIdgasto(Integer idgasto) {
+    public void setIdgasto(int idgasto) {
         this.idgasto = idgasto;
     }
 
