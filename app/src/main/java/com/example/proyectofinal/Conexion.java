@@ -175,7 +175,7 @@ public class Conexion extends SQLiteOpenHelper {
             // fila.moveToFirst();
             if (fila.moveToFirst()) {
                 datos.setFecha(fila.getString(0));
-                datos.setIngreso(Double.parseDouble(fila.getString(1)));
+                datos.setIngreso(Integer.parseInt(fila.getString(1)));
                 estado = true;
             } else {
                 estado = false;
@@ -201,7 +201,7 @@ public class Conexion extends SQLiteOpenHelper {
             // fila.moveToFirst();
             if (fila.moveToFirst()) {
                 datos.setFecha(fila.getString(0));
-                datos.setIngreso(Double.parseDouble(fila.getString(1)));
+                datos.setIngreso(Integer.parseInt(fila.getString(1)));
                 estado = true;
             } else {
                 estado = false;
@@ -224,7 +224,7 @@ public class Conexion extends SQLiteOpenHelper {
             Cursor fila = bd().rawQuery("select * from monto where idmonto=" + idmonto, null);
             if (fila.moveToFirst()) {
                 datos.setFecha(fila.getString(0));
-                datos.setIngreso(Double.parseDouble(fila.getString(1)));
+                datos.setIngreso(Integer.parseInt(fila.getString(1)));
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setIcon(R.drawable.ic_delete);
@@ -382,8 +382,9 @@ public class Conexion extends SQLiteOpenHelper {
 
                 monto = new MontoDto();
                 monto.setIdmonto(fila.getInt(0));
-                monto.setFecha(fila.getString(1));
-                monto.setIngreso(fila.getDouble(2));
+                monto.setIngreso(fila.getInt(1));
+                monto.setFecha(fila.getString(2));
+
 
                 montoList.add(monto);
 
@@ -428,7 +429,7 @@ public class Conexion extends SQLiteOpenHelper {
                 monto = new MontoDto();
                 monto.setIdmonto(fila.getInt(0));
                 monto.setFecha(fila.getString(1));
-                monto.setIngreso(fila.getDouble(2));
+                monto.setIngreso(fila.getInt(2));
 
                 montoList.add(monto);
             }

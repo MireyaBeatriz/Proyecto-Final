@@ -3,6 +3,7 @@ package com.example.proyectofinal;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -27,33 +28,36 @@ public class EditarMonto extends AppCompatActivity {
         edtFecha = findViewById(R.id.edtFecha);
         edtIngreso = findViewById(R.id.edtIngreso);
 
-    }
+//desde aqui empieza lo de modificar
+        String senal = "";
+        String idmonto ="";
+        String fecha = "";
+        String ingreso = "";
 
-    public void Editar(View v) {
-        if (edtFecha.equals("") || edtIngreso.equals("")) {
-            Toast.makeText(datos, "Fecha e Ingreso.\\nSON OBLIGATORIOS", Toast.LENGTH_SHORT).show();
+        try{
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
 
-        } else {
-            SQLiteDatabase bd = conexion.getWritableDatabase();
-            String idmonto = edtIdmonto.getText().toString();
-            String fecha = edtFecha.getText().toString();
-            String ingreso = edtIngreso.getText().toString();
-
-
-            ContentValues registro = new ContentValues();
-            registro.put("idmonto", idmonto);
-            registro.put("fecha", fecha);
-            registro.put("ingreso", ingreso);
+            if (bundle !=null){
+                idmonto = bundle.getString("idmonto");
+                senal = bundle.getString("senal");
+               fecha = bundle.getString("fecha");
+                ingreso = bundle.getString("ingreso");
 
 
-            //bd.insert("empleado", null, registro);
-            bd.update("monto", registro, "idmonto=" + idmonto, null);
-            bd.close();
+               /* Toast.makeText(EditarMonto.this, "idmonto:" +idmonto+"\n" +
+                        "fecha" +fecha +"ingreso"+ ingreso, Toast.LENGTH_SHORT).show();*/
 
-            edtFecha.requestFocus();
-            Toast.makeText(datos, "Monto modificado", Toast.LENGTH_SHORT).show();
+                if (senal.equals("1")){
+                   edtIdmonto.setText(idmonto);
+                    edtFecha.setText(fecha);
+                    edtIngreso.setText(ingreso);
+
+                }
+            }
+        }catch (Exception e){
 
         }
-    }
+}
 }
 

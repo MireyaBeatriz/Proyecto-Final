@@ -109,12 +109,21 @@ btn_editar = findViewById(R.id.btnEditar);
 
 
                 Intent i = new Intent(DetalleGasto.this,EditarGasto.class);
+
                 i.putExtra("senal","1");
+
+                i.putExtra("idgasto",gastosDto.getIdgasto());
+                i.putExtra("descripcion",gastosDto.getEt_fecha());
+                i.putExtra("fecha",String.valueOf(gastosDto.getEt_monto()));
+                i.putExtra("monto",gastosDto.getEt_descripcion());
+
+
                 i.putExtra("idgasto",String.valueOf(gastosDto.getIdgasto()));
                 i.putExtra("descripcion",gastosDto.getEt_descripcion());
                 i.putExtra("fecha",gastosDto.getEt_fecha());
                 //i.putExtra("fecha",date);
                 i.putExtra("monto",String.valueOf(gastosDto.getEt_monto()));
+
                 startActivity(i);
 
               Toast.makeText(DetalleGasto.this, "idgasto:" +gastosDto.getIdgasto()+"\n" +

@@ -3,11 +3,11 @@ package com.example.proyectofinal;
 import java.io.Serializable;
 
 public class MontoDto implements Serializable {
-    private Integer idmonto;
+    private int idmonto;
   private   String fecha;
-   private Double ingreso;
+   private int ingreso;
 
-    public MontoDto(Integer idmonto, String fecha, Double ingreso) {
+    public MontoDto(int idmonto, String fecha, int ingreso) {
         this.idmonto = idmonto;
         this.fecha = fecha;
         this.ingreso = ingreso;
@@ -18,11 +18,11 @@ public class MontoDto implements Serializable {
 
     }
 
-    public Integer getIdmonto() {
+    public int getIdmonto() {
         return idmonto;
     }
 
-    public void setIdmonto(Integer idmonto) {
+    public void setIdmonto(int idmonto) {
         this.idmonto = idmonto;
     }
 
@@ -34,11 +34,11 @@ public class MontoDto implements Serializable {
         this.fecha = fecha;
     }
 
-    public Double getIngreso() {
+    public int getIngreso() {
         return ingreso;
     }
 
-    public void setIngreso(Double ingreso) {
+    public void setIngreso(int ingreso) {
         this.ingreso = ingreso;
     }
 }
