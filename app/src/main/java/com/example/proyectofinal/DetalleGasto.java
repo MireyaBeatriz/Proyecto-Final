@@ -3,6 +3,7 @@ package com.example.proyectofinal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,13 +17,15 @@ public class DetalleGasto  extends AppCompatActivity {
 
     private TextView tv_id, tv_descripcion, tv_fecha, tv_monto;
     private TextView tv_id1, tv_descripcion1, tv_fecha1, tv_monto1;
-
+private Button btn_editar;
     private boolean estadoid= false;
 
+    private String idgasto,descripcion,fecha;
+    private int monto;
 
     Conexion conexion = new Conexion(this);
 
-
+    GastosDto gastosDto = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +42,10 @@ public class DetalleGasto  extends AppCompatActivity {
         tv_descripcion1= (TextView)findViewById(R.id.tv_descripcion1);
         tv_fecha1 = (TextView)findViewById(R.id.tv_fecha1);
         tv_monto1 = (TextView)findViewById(R.id.tv_monto1);
+btn_editar = findViewById(R.id.btnEditar);
 
         Bundle objeto = getIntent().getExtras();
-        GastosDto gastosDto = null;
+
 
         if(objeto != null){
 
@@ -65,6 +69,12 @@ public class DetalleGasto  extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+       /* btn_editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                }
+        });*/
     }
 
     public void eliminarporid(View v) {
@@ -94,9 +104,17 @@ public class DetalleGasto  extends AppCompatActivity {
 
                 Intent i = new Intent(DetalleGasto.this,EditarGasto.class);
 
-
+                i.putExtra("senal","1");
+                i.putExtra("idgasto",gastosDto.getIdgasto());
+                i.putExtra("descripcion",gastosDto.getEt_fecha());
+                i.putExtra("fecha",String.valueOf(gastosDto.getEt_monto()));
+                i.putExtra("monto",gastosDto.getEt_descripcion());
 
                 startActivity(i);
+
+             /* Toast.makeText(DetalleGasto.this, "idgasto:" +gastosDto.getIdgasto()+"\n" +
+                      "descripcion" +gastosDto.getEt_fecha()+"fecha"+String.valueOf(gastosDto.getEt_monto())+"monto"+gastosDto.getEt_descripcion(), Toast.LENGTH_SHORT).show();
+*/
 
             }
         }

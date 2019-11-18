@@ -57,7 +57,7 @@
         android:layout_marginLeft="20dp"
         android:textColor="#000"
         android:textSize="20dp"
-        android:inputType="date"
+        android:inputType="text"
         android:drawableStart="@drawable/ic_date"/>
 
     <EditText
@@ -129,7 +129,6 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/rubi"
-        android:onClick="modificarporid"
         android:text="Modifcar" />
 
     <Button

@@ -118,7 +118,7 @@ public class MontoInicial extends AppCompatActivity {
 
         if (estadoIngreso) {
             String ingreso = edtIngreso.getText().toString();
-            datos.setIngreso(Double.parseDouble(ingreso));
+            datos.setIngreso(Integer.parseInt(ingreso));
 
             if (conexion.consultarIngreso1(datos)) {
                 edtFecha.setText(datos.getFecha());

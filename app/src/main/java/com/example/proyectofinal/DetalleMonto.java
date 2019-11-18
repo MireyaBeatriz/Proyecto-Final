@@ -23,7 +23,7 @@ public class DetalleMonto extends AppCompatActivity {
     private TextView tv_id1, tv_fecha1, tv_ingreso1;
 
     private boolean estadoid = false;
-
+    MontoDto montoDto = null;
     Conexion conexion = new Conexion(this);
 
     @Override
@@ -41,7 +41,7 @@ public class DetalleMonto extends AppCompatActivity {
         tv_ingreso1 = (TextView) findViewById(R.id.tv_ingreso1);
 
         Bundle objeto = getIntent().getExtras();
-        MontoDto montoDto = null;
+
 
         if (objeto != null) {
 
@@ -86,8 +86,22 @@ public class DetalleMonto extends AppCompatActivity {
     }
     public void Editar(View v) {
 
+
         Intent i = new Intent(DetalleMonto.this,EditarMonto.class);
+
+
+        i.putExtra("senal","1");
+        i.putExtra("idmonto",String.valueOf(montoDto.getIdmonto()));
+        i.putExtra("fecha",montoDto.getFecha());
+        i.putExtra("ingreso",String.valueOf(montoDto.getIngreso()));
+
         startActivity(i);
+
+             Toast.makeText(DetalleMonto.this, "idmonto:" +montoDto.getIdmonto()+"\n" +
+                      "fecha" +montoDto.getFecha()+"ingreso"+montoDto.getIngreso(), Toast.LENGTH_SHORT).show();
+
+
+
 
     }
 }
