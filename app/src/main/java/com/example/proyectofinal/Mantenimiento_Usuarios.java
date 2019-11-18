@@ -26,7 +26,7 @@ class Mantenimiento_Usuarios {
     private ProgressDialog pd;
 
     //Función de Log-In
-    public void verificarSesion(final Context context, final String email, final String password) {
+    public void verificarSesion(final Context context, final String email, final String clave) {
 
         pd = new ProgressDialog(context);
         pd.setMessage("Verificando los datos en el servidor. \nEspere un momento...");
@@ -54,15 +54,15 @@ class Mantenimiento_Usuarios {
                                 String nombres = jsonArray.getJSONObject(0).getString("nombres");
                                 String apellidos = jsonArray.getJSONObject(0).getString("apellidos");
                                 String email = jsonArray.getJSONObject(0).getString("email");
-                                String password = jsonArray.getJSONObject(0).getString("password");
-                                String tipo = jsonArray.getJSONObject(0).getString("tipo");
+                                String clave = jsonArray.getJSONObject(0).getString("clave");
+                                /*String tipo = jsonArray.getJSONObject(0).getString("tipo");
                                 String pregunta = jsonArray.getJSONObject(0).getString("pregunta");
-                                String respuesta = jsonArray.getJSONObject(0).getString("respuesta");
+                                String respuesta = jsonArray.getJSONObject(0).getString("respuesta");*/
 
                                 Toast.makeText(context, "Usuario Encontrado: \n"+
                                         nombres + " " + apellidos, Toast.LENGTH_SHORT).show();
 
-                                if(tipo.equals("1")){
+                                if(email != null){
 
                                     Intent intent = new Intent(context, MainActivity.class);
                                     intent.putExtra("senal", "5");
@@ -70,15 +70,15 @@ class Mantenimiento_Usuarios {
                                     intent.putExtra("nombres", nombres);
                                     intent.putExtra("apellidos", apellidos);
                                     intent.putExtra("email", email);
-                                    intent.putExtra("password", password);
-                                    intent.putExtra("tipo", tipo);
+                                    intent.putExtra("clave", clave);
+                                    /*intent.putExtra("tipo", tipo);
                                     intent.putExtra("pregunta", pregunta);
                                     intent.putExtra("respuesta", respuesta);
-                                    context.startActivity(intent);
+                                    context.startActivity(intent);*/
 
-                                }else if(tipo.equals("0")){
+                                }else if(email.equals("0")){
 
-                                }else if(tipo.equals("2")){
+                                }else if(email.equals(null)){
 
                                 }
 
@@ -105,7 +105,7 @@ class Mantenimiento_Usuarios {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("email", email);
-                map.put("clave", password);
+                map.put("clave", clave);
                 return map;
             }
 

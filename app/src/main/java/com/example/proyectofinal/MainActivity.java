@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,26 +17,44 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.util.Patterns;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private PendingIntent pendingIntent;
-    private final static String CHANNEL_ID = "NOTIFICACION";
-    private final static int NOTIFICACION_ID = 0;
-    AlertDialog.Builder dialogo;
+    private TextInputLayout tiEmail, tiPassword;
+    private EditText etEmail, etPassword;
+    private Button btnLogin;
+
+    View focusView = null;
+    boolean estado_correo;
+    boolean estado_password;
+
+    Mantenimiento_Usuarios manto = new Mantenimiento_Usuarios();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_login);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_cerrar));
         setSupportActionBar(toolbar);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        etEmail = (EditText) findViewById(R.id.etEmail);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+
+        tiEmail = (TextInputLayout)findViewById(R.id.tiEmail);
+        tiPassword = (TextInputLayout)findViewById(R.id.tiPassword);
+
+        btnLogin = (Button) findViewById(R.id.btnLogin);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,13 +62,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-            }
-        });
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogConfirmacion();
             }
         });
     }
@@ -69,80 +81,61 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_monto) {
-            Intent i = new Intent(MainActivity.this,MontoInicial.class);
-            startActivity(i);
-            return true;
-        }
-        if (id == R.id.action_gastos) {
-            Intent i = new Intent(MainActivity.this,Gastos.class);
-            startActivity(i);
-            return true;
-        }
 
-        if (id == R.id.action_Lista) {
-        Intent i = new Intent(MainActivity.this,ListaMonto.class);
-        startActivity(i);
-        return true;
-    }
-        if (id == R.id.action_Lista_gasto) {
-            Intent i = new Intent(MainActivity.this,ListaGasto.class);
-            startActivity(i);
-            return true;
-        }
-        if (id == R.id.action_resultado) {
-            createNotificacion();
-            return true;
-        }
 
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void DialogConfirmacion(){
-        //startActivity(new Intent(getApplicationContext(),MainActivity.class));
-        String mensaje = "¿Realmente desea salir?";
-        dialogo = new AlertDialog.Builder(MainActivity.this);
-        dialogo.setIcon(R.drawable.ic_cerrar);
-        dialogo.setTitle("Advertencia");
-        dialogo.setMessage(mensaje);
-        dialogo.setCancelable(false);
-        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo, int id) {
-                /*Intent intent = new Intent(DashboardLuces.this, luces_control_sms.class);
-                startActivity(intent);*/
-                MainActivity.this.finishAffinity();
-                //Main2Activity.this.finish();
-            }
-        });
-        dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo, int id) {
-                Toast.makeText(getApplicationContext(), "Operación Cancelada.", Toast.LENGTH_LONG).show();
-            }
-        });
-        dialogo.show();
+    /*public void Entrar(View view) {
+        if (etEmail.getText().toString().length() == 0) {
+            etEmail.setError("Campo obligatorio");
+            estado_correo = false;
+        } else {
+            estado_correo = true;
+        }
+        if (etPassword.getText().toString().length() == 0) {
+            etPassword.setError("Campo obligatorio");
+            estado_password = false;
+        } else {
+            estado_password = true;
+        }
+
+        if (estado_correo && estado_password) {
+
+            Intent i = new Intent(MainActivity.this, Main2Activity.class);
+            startActivity(i);
+        }
+    }*/
+    public void login(View v){
+
+        if (Patterns.EMAIL_ADDRESS.matcher(etEmail.getText().toString()).matches() == false) {
+            //mEmail.setBackgroundColor(Color.GREEN);
+            etEmail.setText(null);
+            tiEmail.setError("Correo invalido.");
+            focusView = etEmail;
+            etEmail.requestFocus();
+            estado_correo = false;
+        } else {
+            estado_correo = true;
+            tiEmail.setError(null);
+        }
+
+
+        if (estado_correo == true && (!etPassword.getText().toString().isEmpty())) {
+            String correo = etEmail.getText().toString();
+            String pass = etPassword.getText().toString();
+            manto.verificarSesion(MainActivity.this, correo, pass);
+            limpiar();
+        }
+
     }
 
-
-
-    private void createNotificacion(){
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
-        builder.setSmallIcon(R.drawable.ic_alert);
-        builder.setContentTitle("Notificación de Presupuesto");
-        builder.setContentText("Resultado de presupuesto");
-        builder.setColor(Color.BLUE);
-        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        builder.setLights(Color.MAGENTA, 1000, 1000);
-        builder.setVibrate(new long[]{1000, 1000, 1000, 1000, 100});
-        builder.setDefaults(Notification.DEFAULT_SOUND);
-
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getApplicationContext());
-        notificationManagerCompat.notify(NOTIFICACION_ID, builder.build());
-
-        Intent i = new Intent(MainActivity.this, Resultado.class);
-        startActivity(i);
+    private void limpiar(){
+        etEmail.setText(null);
+        etPassword.setText(null);
+        etEmail.requestFocus();
     }
-
 }
 
 

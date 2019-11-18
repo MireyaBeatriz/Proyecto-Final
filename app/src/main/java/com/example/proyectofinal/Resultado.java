@@ -23,13 +23,7 @@ public class Resultado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado);
 
-      btnNotificacion = findViewById(R.id.btnNotificacion);
-        btnNotificacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createNotificacion();
-            }
-        });
+
     }
 
     private void createNotificacion(){

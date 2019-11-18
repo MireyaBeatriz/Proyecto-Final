@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:showIn="@layout/activity_login"
+    tools:context=".MainActivity"
     android:orientation="vertical"
     android:background="@drawable/grad_bg">
 
@@ -145,6 +146,7 @@
                 android:background="@drawable/rubi"
                 android:textAllCaps="false"
                 android:textColor="#000"
+                android:onClick="login"
                 android:textStyle="italic"
                 android:textSize="16sp"
                 />
